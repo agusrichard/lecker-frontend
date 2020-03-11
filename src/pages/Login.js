@@ -19,19 +19,14 @@ class Login extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(this.state.username, this.state.password)
   }
 
   handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(this.state.username, this.state.password)
     if (this.state.username && this.state.password) {
       const data = { username: this.state.username, password: this.state.password }
-      console.log(data)
-      const response = await axios.post('http://localhost:5000/auth/login', data)
-      console.log(response)
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/login', data)
       if (response.status === 200) {
-        console.log(response.data.data.token)
         try {
           localStorage.setItem('token', JSON.stringify(response.data.data.token))
           this.props.history.push('/')
@@ -59,7 +54,7 @@ class Login extends React.Component {
                 <div className="row">
                   <div className="col-md-9 col-lg-8 mx-auto">
                     <h3 className="login-heading mb-5">Welcome back!</h3>
-                    <form>
+                    <form method="post">
                       <div className="form-label-group">
                         <input type="text" id="inputUsername" name="username" 
                                 className="form-control" placeholder="Username"

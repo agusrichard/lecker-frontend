@@ -1,11 +1,64 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import axios from 'axios'
 
+import RegisterForm from '../components/RegisterForm'
 import '../assets/styles/register.css'
 
 class Register extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      email: '',
+      username: '',
+      password: '',
+      isSuccess: false
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    if (this.state.name && this.state.email && this.state.username && this.state.password) {
+      const data = { 
+        name: this.state.name,
+        email: this.state.email,
+        username: this.state.username, 
+        password: this.state.password 
+      }
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/register', data)
+      if (response.status === 200) {
+        this.setState((prevState, prevProps) => {
+          return { 
+            isSuccess: !prevState.isSuccess
+          }
+        })
+      }
+    }
+  }
+
   render() {
+    let inside = ''
+    if (!this.state.isSuccess) {
+      inside = (
+        <div>
+          <h3 className="register-heading mb-5 text-center">Register Here</h3>
+          <RegisterForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        </div>
+      )
+    } else {
+      inside = <h3 className="register-heading mb-5 text-center">Please check your email to verify your account</h3>
+    }
+
     return (
       <div className="container-fluid background-register">
         <Helmet>
@@ -18,35 +71,7 @@ class Register extends React.Component {
               <div className="container">
                 <div className="row">
                   <div className="col-md-9 col-lg-8 mx-auto">
-                    <h3 className="register-heading mb-5">Welcome! Please provide the required informations</h3>
-                    <form>
-                      <div className="form-label-group">
-                        <input type="text" id="inputFullname" className="form-control" placeholder="Fullname" required autoFocus />
-                        <label htmlFor="inputFullname">Fullname</label>
-                      </div>
-
-                      <div className="form-label-group">
-                        <input type="text" id="inputEmail" className="form-control" placeholder="Email" required autoFocus />
-                        <label htmlFor="inputEmail">Email</label>
-                      </div>
-
-                      <div className="form-label-group">
-                        <input type="text" id="inputUsername" className="form-control" placeholder="Username" required autoFocus />
-                        <label htmlFor="inputUsername">Username</label>
-                      </div>
-
-                      <div className="form-label-group">
-                        <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-                        <label htmlFor="inputPassword">Password</label>
-                      </div>
-
-                      <button className="btn btn-lg btn-primary btn-block btn-register text-uppercase font-weight-bold mb-2 mt-5" type="submit">register</button>
-                      <div className="mx-auto mt-3">
-                        <div className="row">
-                          <Link className="col text-left text-muted text-decoration-none" to="/auth/login">Already have account? Sign In</Link>
-                        </div>
-                      </div>
-                    </form>
+                    { inside }
                   </div>
                 </div>
               </div>
