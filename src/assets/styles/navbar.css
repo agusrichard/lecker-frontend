@@ -1,16 +1,23 @@
 .navbar-brand-text {
-  font-size: 2rem;
   font-weight: bold;
+  font-size: 2rem;
+  background: -webkit-linear-gradient(#FF4F00  , #FFC746);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar-brand {
+  text-decoration: none;
 }
 
 .link-text {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: bold;  
 }
 
-
 .btn-login {
-  font-size: 1.2rem;
+  color: #fff;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #FFF;
 }

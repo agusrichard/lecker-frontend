@@ -4,16 +4,8 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
-  NavItem,
-  Button,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+  NavItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import Logo from '../assets/images/navbarLogo.png'
@@ -25,12 +17,12 @@ const CustomNavbar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar color="dark" dark expand="md">
+    <Navbar color="dark" dark expand="md" className="fixed-top">
       <Container>
-        <NavbarBrand href="/">
+        <Link className="navbar-brand">
           <img src={ Logo } width="50" height="50" class="d-inline-block align-top mr-2" alt="" />
           <span className="navbar-brand-text">LECKER</span>
-        </NavbarBrand>
+        </Link>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
@@ -46,7 +38,7 @@ const CustomNavbar = (props) => {
           </Nav>
           <Nav navbar>
             <NavItem>
-              <Link className="btn btn-warning px-4 py-2"><span className="btn-login">Login</span></Link>
+              <Link to="/auth/login" className="btn btn-warning px-4 py-2"><span className="btn-login">Login</span></Link>
             </NavItem>
           </Nav>
         </Collapse>
