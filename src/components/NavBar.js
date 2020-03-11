@@ -17,23 +17,23 @@ const CustomNavbar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar color="dark" dark expand="md" className="fixed-top">
+    <Navbar color="dark" dark expand="md" className="sticky-top">
       <Container>
         <Link className="navbar-brand">
-          <img src={ Logo } width="50" height="50" class="d-inline-block align-top mr-2" alt="" />
+          <img src={ Logo } width="50" height="50" className="d-inline-block align-top mr-2" alt="" />
           <span className="navbar-brand-text">LECKER</span>
         </Link>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <Link to="/" className="nav-link link-text">Home</Link>
+              <Link to="#" className="nav-link link-text">Home</Link>
             </NavItem>
             <NavItem>
-              <Link to="/" className="nav-link link-text">Restaurants</Link>
+              <Link to="#" className="nav-link link-text">Restaurants</Link>
             </NavItem>
             <NavItem>
-              <Link to="/" className="nav-link link-text">Items</Link>
+              <Link to="#" className="nav-link link-text">Items</Link>
             </NavItem>
           </Nav>
           <Nav navbar>

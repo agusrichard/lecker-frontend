@@ -1,15 +1,54 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import axios from 'axios'
 
 import '../assets/styles/login.css'
 
 class Login extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: ''
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+    console.log(this.state.username, this.state.password)
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    console.log(this.state.username, this.state.password)
+    if (this.state.username && this.state.password) {
+      const data = { username: this.state.username, password: this.state.password }
+      console.log(data)
+      const response = await axios.post('http://localhost:5000/auth/login', data)
+      console.log(response)
+      if (response.status === 200) {
+        console.log(response.data.data.token)
+        try {
+          localStorage.setItem('token', JSON.stringify(response.data.data.token))
+          this.props.history.push('/')
+        } catch(err) {
+          console.log(err)
+        }
+      }
+    } else {
+      alert('Please provide the required fields')
+    }
+
+  }
+
   render() {
     return (
       <div className="container-fluid background-login">
         <Helmet>
-          <meta charSet="utf-8" />
           <title>Lecker - Login</title>
         </Helmet>
         <div className="row no-gutter">
@@ -22,19 +61,25 @@ class Login extends React.Component {
                     <h3 className="login-heading mb-5">Welcome back!</h3>
                     <form>
                       <div className="form-label-group">
-                        <input type="text" id="inputUsername" className="form-control" placeholder="Username" required autofocus />
-                        <label for="inputUsername">Username</label>
+                        <input type="text" id="inputUsername" name="username" 
+                                className="form-control" placeholder="Username"
+                                onChange={this.handleChange}
+                                required autoFocus />
+                        <label htmlFor="inputUsername">Username</label>
                       </div>
 
                       <div className="form-label-group">
-                        <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-                        <label for="inputPassword">Password</label>
+                        <input type="password" id="inputPassword" name="password" 
+                                className="form-control" placeholder="Password" 
+                                onChange={this.handleChange} required />
+                        <label htmlFor="inputPassword">Password</label>
                       </div>
 
-                      <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2 mt-5" type="submit">Login</button>
+                      <button className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2 mt-5" 
+                              type="submit" onClick={this.handleSubmit}>Login</button>
                       <div className="mx-auto mt-3">
                         <div className="row">
-                          <Link className="col text-left text-muted text-decoration-none" to="#">Forgot password?</Link>
+                          <Link className="col text-left text-muted text-decoration-none" to="/auth/forgot-password">Forgot password?</Link>
                           <Link className="col text-right text-muted text-decoration-none" to="/auth/register">Sign Up?</Link>
                         </div>
                       </div>

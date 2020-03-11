@@ -9,7 +9,6 @@ class Register extends React.Component {
     return (
       <div className="container-fluid background-register">
         <Helmet>
-          <meta charSet="utf-8" />
           <title>Lecker - Register</title>
         </Helmet>
         <div className="row no-gutter">
@@ -22,23 +21,23 @@ class Register extends React.Component {
                     <h3 className="register-heading mb-5">Welcome! Please provide the required informations</h3>
                     <form>
                       <div className="form-label-group">
-                        <input type="text" id="inputFullname" className="form-control" placeholder="Fullname" required autofocus />
-                        <label for="inputFullname">Fullname</label>
+                        <input type="text" id="inputFullname" className="form-control" placeholder="Fullname" required autoFocus />
+                        <label htmlFor="inputFullname">Fullname</label>
                       </div>
 
                       <div className="form-label-group">
-                        <input type="text" id="inputEmail" className="form-control" placeholder="Email" required autofocus />
-                        <label for="inputEmail">Email</label>
+                        <input type="text" id="inputEmail" className="form-control" placeholder="Email" required autoFocus />
+                        <label htmlFor="inputEmail">Email</label>
                       </div>
 
                       <div className="form-label-group">
-                        <input type="text" id="inputUsername" className="form-control" placeholder="Username" required autofocus />
-                        <label for="inputUsername">Username</label>
+                        <input type="text" id="inputUsername" className="form-control" placeholder="Username" required autoFocus />
+                        <label htmlFor="inputUsername">Username</label>
                       </div>
 
                       <div className="form-label-group">
                         <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-                        <label for="inputPassword">Password</label>
+                        <label htmlFor="inputPassword">Password</label>
                       </div>
 
                       <button className="btn btn-lg btn-primary btn-block btn-register text-uppercase font-weight-bold mb-2 mt-5" type="submit">register</button>
