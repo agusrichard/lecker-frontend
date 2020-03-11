@@ -4,11 +4,14 @@ import { Alert } from 'reactstrap';
 const DismissableAlert = (props) => {
   const [visible, setVisible] = useState(true);
 
-  const onDismiss = () => setVisible(false);
+  const onDismiss = () => {
+    setVisible(false)
+    props.dismiss()
+  };
 
   return (
-    <Alert color="info" isOpen={visible} toggle={onDismiss}>
-      I am an alert and I can be dismissed!
+    <Alert color={ props.context } isOpen={ visible } toggle={ onDismiss }>
+      { props.message }
     </Alert>
   );
 }
