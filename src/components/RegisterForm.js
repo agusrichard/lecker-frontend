@@ -39,7 +39,7 @@ function RegisterForm(props) {
       <div className="form-label-group">
         <input type="password" id="inputConfirmPassword" 
                 className="form-control" placeholder="Confirm Password"
-                name="confirmpassword" onChange={props.handleChange}
+                name="confirmPassword" onChange={props.handleChange}
                 required />
         <label htmlFor="inputConfirmPassword">Confirm Password</label>
       </div>

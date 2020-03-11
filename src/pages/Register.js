@@ -1,9 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import axios from 'axios'
 
 import RegisterForm from '../components/RegisterForm'
+import DismissableAlert from '../components/DismissableAlert'
 import '../assets/styles/register.css'
 
 class Register extends React.Component {
@@ -15,8 +15,15 @@ class Register extends React.Component {
       email: '',
       username: '',
       password: '',
+      confirmPassword: '',
+      message: '',
+      isValid: true,
       isSuccess: false
     }
+  }
+
+  dismiss = () => {
+    this.setState({ isValid: true })
   }
 
   handleChange = (event) => {
@@ -28,21 +35,45 @@ class Register extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault()
-    if (this.state.name && this.state.email && this.state.username && this.state.password) {
-      const data = { 
-        name: this.state.name,
-        email: this.state.email,
-        username: this.state.username, 
-        password: this.state.password 
-      }
-      const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/register', data)
-      if (response.status === 200) {
-        this.setState((prevState, prevProps) => {
-          return { 
-            isSuccess: !prevState.isSuccess
+    try {
+      if (this.state.name && this.state.email && this.state.username && this.state.password) {
+        if (this.state.password ===  this.state.confirmPassword) {
+          const data = { 
+            name: this.state.name,
+            email: this.state.email,
+            username: this.state.username, 
+            password: this.state.password 
+          }
+          const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/register', data)
+          console.log(response)
+          if (response.status === 200) {
+            this.setState(prevState => {
+              return { isSuccess: !prevState.isSuccess }
+            })
+          }
+        } else {
+          this.setState(prevState => {
+            return {
+              isValid: !prevState.isValid,
+              message: 'Password and Confirm Password Must Match'
+            }
+          })
+        }
+      } else {
+        this.setState(prevState => {
+          return {
+            isValid: !prevState.isValid,
+            message: 'Please provide the required fields'
           }
         })
       }
+    } catch(err) {
+      this.setState(prevState => {
+        return {
+          isValid: !prevState.isValid,
+          message: 'Username is already used'
+        }
+      })
     }
   }
 
@@ -51,6 +82,11 @@ class Register extends React.Component {
     if (!this.state.isSuccess) {
       inside = (
         <div>
+          { !this.state.isValid ? 
+            <DismissableAlert message={this.state.message} 
+                              context="warning" 
+                              dismiss={this.dismiss}/> 
+            : null }
           <h3 className="register-heading mb-5 text-center">Register Here</h3>
           <RegisterForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         </div>
