@@ -1,0 +1,35 @@
+.single_menu_list {
+	position: relative;
+	padding-left: 190px;
+	margin-bottom: 110px;
+}
+
+.single_menu_list img {
+	max-width: 30%;
+	position: absolute;
+	left: 0px;
+	top: 0;
+	border: 1px solid #ddd;
+	padding: 3px;
+	border-radius: 50%;
+	transition: .4s
+}
+
+.single_menu_list:hover img {
+	border-radius: 0;
+	transition: .4s
+}
+
+.single_menu_list h4 {
+	font-size: 20px;
+	border-bottom: 1px dashed #333;
+	padding-bottom: 15px;
+	margin-bottom: 10px;
+}
+
+.single_menu_list h4 span {
+	float: right;
+	font-weight: bold;
+	color: #FF5E18;
+	font-style: italic;
+}

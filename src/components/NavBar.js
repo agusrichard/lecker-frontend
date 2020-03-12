@@ -17,9 +17,9 @@ const CustomNavbar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar color="dark" dark expand="md" className="sticky-top">
+    <Navbar color="dark" dark expand="md" className="sticky-top mb-4">
       <Container>
-        <Link className="navbar-brand">
+        <Link to="/"  className="navbar-brand">
           <img src={ Logo } width="50" height="50" className="d-inline-block align-top mr-2" alt="" />
           <span className="navbar-brand-text">LECKER</span>
         </Link>
@@ -27,13 +27,13 @@ const CustomNavbar = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <Link to="#" className="nav-link link-text">Home</Link>
+              <Link to="/" className="nav-link link-text">Home</Link>
             </NavItem>
             <NavItem>
               <Link to="#" className="nav-link link-text">Restaurants</Link>
             </NavItem>
             <NavItem>
-              <Link to="#" className="nav-link link-text">Items</Link>
+              <Link to="/items" className="nav-link link-text">Our Menus</Link>
             </NavItem>
           </Nav>
           <Nav navbar>

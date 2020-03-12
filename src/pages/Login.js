@@ -84,8 +84,7 @@ class Login extends React.Component {
                       <DismissableAlert message={this.state.message} 
                                         context="warning" 
                                         dismiss={this.dismiss}/> 
-                      : null
-                       }
+                      : null }
                     <h3 className="login-heading mb-5 text-center">Welcome back!</h3>
                     <LoginForm 
                       handleChange={this.handleChange}

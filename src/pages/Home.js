@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Container } from 'reactstrap'
 import CustomNavbar from '../components/NavBar'
+import ItemCard from '../components/ItemCard'
 
 import '../assets/styles/home.css'
 

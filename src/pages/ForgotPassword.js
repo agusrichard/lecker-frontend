@@ -1,11 +1,82 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import axios from 'axios'
 
+import ForgotPasswordForm from '../components/ForgotPasswordForm'
+import DismissableAlert from '../components/DismissableAlert'
 import '../assets/styles/forgotpassword.css'
 
 class ForgotPassword extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      username: '',
+      message: '',
+      isValid: true,
+      isSuccess: false
+    }
+  }
+
+  dismiss = () => {
+    this.setState({ isValid: true })
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      if (this.state.username && this.state.email) {
+        const data = { username: this.state.username, email: this.state.email }
+        const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/forgot-password', data)
+        console.log(response)
+        if (response.status === 200) {
+          this.setState(prevState => {
+            return { isSuccess: !prevState.isSuccess }
+          })
+        }
+      } else {
+        this.setState(prevState => {
+          return {
+            isValid: !prevState.isValid,
+            message: 'Please provide username and email'
+          }
+        })
+      }
+    } catch(err) {
+      console.log(err)
+      this.setState(prevState => {
+        return {
+          isValid: !prevState.isValid,
+          message: 'Can\'t change password'
+        }
+      })
+    }
+  }
+
   render() {
+    let inside = ''
+    if (!this.state.isSuccess) {
+      inside = (
+        <div>
+          { !this.state.isValid ? 
+            <DismissableAlert message={this.state.message} 
+                              context="warning" 
+                              dismiss={this.dismiss}/> 
+            : null }
+          <h3 className="register-heading mb-5 text-center">Reset Password</h3>
+          <ForgotPasswordForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        </div>
+      )
+    } else {
+      inside = <h3 className="register-heading mb-5 text-center">Please check your email to get the recover password link</h3>
+    }
+
     return (
       <div className="container-fluid background-forgotpassword">
         <Helmet>
@@ -18,20 +89,7 @@ class ForgotPassword extends React.Component {
               <div className="container">
                 <div className="row">
                   <div className="col-md-9 col-lg-8 mx-auto">
-                    <h3 className="forgotpassword-heading mb-5 text-center">Forgot Password?</h3>
-                    <form>
-                      <div className="form-label-group">
-                        <input type="text" id="inputEmail" className="form-control" placeholder="Email" required autofocus />
-                        <label for="inputEmail">Email</label>
-                      </div>
-
-                      <div className="form-label-group">
-                        <input type="text" id="inputUsername" className="form-control" placeholder="Username" required autofocus />
-                        <label for="inputUsername">Username</label>
-                      </div>
-
-                      <button className="btn btn-lg btn-primary btn-block btn-forgotpassword text-uppercase font-weight-bold mb-2 mt-5" type="submit">reset password</button>
-                    </form>
+                    { inside }
                   </div>
                 </div>
               </div>
