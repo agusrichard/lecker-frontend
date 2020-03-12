@@ -31,7 +31,7 @@ const CustomNavbar = (props) => {
               <Link to="/" className="nav-link link-text">Home</Link>
             </NavItem>
             <NavItem>
-              <Link to="#" className="nav-link link-text">Restaurants</Link>
+              <Link to="/restaurants" className="nav-link link-text">Restaurants</Link>
             </NavItem>
             <NavItem>
               <Link to="/items" className="nav-link link-text">Our Menus</Link>

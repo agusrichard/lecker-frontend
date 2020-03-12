@@ -2,19 +2,19 @@ import React from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 
-import ItemCard from '../components/ItemCard'
+import RestaurantCard from '../components/RestaurantCard'
 import CustomNavbar from '../components/NavBar'
 import Pagination from '../components/Pagination'
 import { Container } from 'reactstrap'
 
-class ItemsPage extends React.Component {
+class RestaurantsPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isLoggedIn: false,
       pagination: '',
       currentPage: process.env.REACT_APP_BASE_URL + this.props.location.pathname + this.props.location.search,
-      listOfItems: []
+      listOfRestaurants: []
     }
   }
 
@@ -25,15 +25,15 @@ class ItemsPage extends React.Component {
     }
   }
 
-  getItems = async () => {
-    console.log('getItems')
+  getRestaurants = async () => {
+    console.log('getRestaurants')
     console.log(this.state.currentPage)
     try {
       const response = await axios.get(this.state.currentPage)
       console.log(response.data.data.results)
       console.log(response.data.data.pagination)
       this.setState({
-        listOfItems: response.data.data.results,
+        listOfRestaurants: response.data.data.results,
         pagination: response.data.data.pagination
       })
     } catch(err) {
@@ -45,36 +45,32 @@ class ItemsPage extends React.Component {
     console.log('componentDidMount')
     console.log(this.state.currentPage)
     this.checklog()
-    this.getItems()
+    this.getRestaurants()
   }
 
-
   render() {
-    console.log('render')
-    console.log(this.state.currentPage)
-    const itemsInCol = this.state.listOfItems.length
-    const itemsColOne = this.state.listOfItems.slice(0, Math.ceil(itemsInCol / 2)).map(item => <ItemCard item={item} />)
-    const itemsColTwo = this.state.listOfItems.slice(Math.ceil(itemsInCol / 2)).map(item => <ItemCard item={item} />)
+
+    const renderedRestaurants = this.state.listOfRestaurants.map(item => {
+      return (
+        <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+          <RestaurantCard item={item}/>
+        </div>
+      )
+    })
 
     return (
       <div>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } />
         <Container>
-          <h1 className="text-center mt-5">Our Menus</h1><hr />
-          <div class="row mt-5">
-            <div class="col-md-6">
-              { itemsColOne }
-            </div>
-            <div class="col-md-6">
-              { itemsColTwo }
-            </div>
+          <h1 className="text-center mt-5">List of Restaurants</h1><hr />
+          <div class="row">
+            {renderedRestaurants}
           </div>
-          <Pagination pagination={this.state.pagination} rerender={this.rerender} route="items"/>
+          <Pagination pagination={this.state.pagination} rerender={this.rerender} route="restaurants"/>
         </Container>
       </div>
     )
   }
 }
 
-
-export default ItemsPage
+export default RestaurantsPage

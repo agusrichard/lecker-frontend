@@ -10,7 +10,7 @@ function Pagination(props) {
       return (
         <li className="page-item active">
           <a className="page-link" 
-                href={'/items?page=' + (item+1)}>
+                href={`/${props.route}?page=` + (item+1)}>
                   {(item+1)}
           </a>
         </li>
@@ -19,7 +19,7 @@ function Pagination(props) {
       return (
         <li className="page-item">
           <a className="page-link" 
-                href={'/items?page=' + (item+1)}>
+                href={`/${props.route}?page=` + (item+1)}>
                   {(item+1)} <span className="sr-only">(current)</span>
           </a>
         </li>
@@ -29,7 +29,7 @@ function Pagination(props) {
   return (
 
     <nav aria-label="...">
-      <ul className="pagination justify-content-center">
+      <ul className="pagination justify-content-center mt-6">
         { !props.pagination.previousPage ?
           <li className="page-item disabled">
             <a className="page-link" tabindex="-1" aria-disabled="true"
