@@ -13,6 +13,7 @@ class ItemsPage extends React.Component {
     this.state = {
       isLoggedIn: false,
       pagination: '',
+      currentPage: process.env.REACT_APP_BASE_URL + this.props.location.pathname + this.props.location.search,
       listOfItems: []
     }
   }
@@ -25,10 +26,10 @@ class ItemsPage extends React.Component {
   }
 
   getItems = async () => {
-    const pathname = this.props.location.pathname
-    const search = this.props.location.search
+    console.log('getItems')
+    console.log(this.state.currentPage)
     try {
-      const response = await axios.get(process.env.REACT_APP_BASE_URL + pathname + search)
+      const response = await axios.get(this.state.currentPage)
       console.log(response.data.data.results)
       console.log(response.data.data.pagination)
       this.setState({
@@ -41,16 +42,32 @@ class ItemsPage extends React.Component {
   }
 
   rerender = () => {
-    this.getItems()
+    console.log('rerender')
+    console.log(this.state.currentPage)
+    const pathname = this.props.location.pathname
+    const search = this.props.location.search
+    this.setState({ currentPage: process.env.REACT_APP_BASE_URL + pathname + search })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate')
+    console.log(this.state.currentPage)
+    if (this.state.currentPage !== prevState.currentPage) {
+      this.getItems()
+    }
   }
 
   componentDidMount() {
+    console.log('componentDidMount')
+    console.log(this.state.currentPage)
     this.checklog()
     this.getItems()
   }
 
 
   render() {
+    console.log('render')
+    console.log(this.state.currentPage)
     const itemsInCol = this.state.listOfItems.length
     const itemsColOne = this.state.listOfItems.slice(0, Math.ceil(itemsInCol / 2)).map(item => <ItemCard item={item} />)
     const itemsColTwo = this.state.listOfItems.slice(Math.ceil(itemsInCol / 2)).map(item => <ItemCard item={item} />)

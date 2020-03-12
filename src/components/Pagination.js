@@ -3,25 +3,25 @@ import { Link } from 'react-router-dom'
 
 function Pagination(props) {
   console.log('In pagination')
-  props.rerender()
   const numLink = [...Array(props.pagination.totalPages).keys()].map(item => {
-    console.log(item)
     if (props.pagination.currentPage === (item+1)) {
       return (
         <li className="page-item active">
-          <Link className="page-link" 
-                to={'/items?page=' + (item+1)}>
+          <a className="page-link" 
+                href={'/items?page=' + (item+1)}
+                onClick={props.rerender}>
                   {(item+1)}
-          </Link>
+          </a>
         </li>
       )
     } else {
       return (
         <li className="page-item">
-          <Link className="page-link" 
-                to={'/items?page=' + (item+1)}>
+          <a className="page-link" 
+                href={'/items?page=' + (item+1)}
+                onClick={props.rerender}>
                   {(item+1)} <span className="sr-only">(current)</span>
-          </Link>
+          </a>
         </li>
       )
     }
@@ -32,7 +32,7 @@ function Pagination(props) {
       <ul className="pagination justify-content-center">
         { !props.pagination.previousPage ?
           <li className="page-item disabled">
-            <Link className="page-link" tabindex="-1" aria-disabled="true">Previous</Link>
+            <a className="page-link" tabindex="-1" aria-disabled="true">Previous</a>
           </li> : 
           <li className="page-item">
             <a className="page-link" href="#" tabindex="-1" >Previous</a>
