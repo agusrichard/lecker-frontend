@@ -1,6 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 import LoginForm from '../components/LoginForm'
 import DismissableAlert from '../components/DismissableAlert'
@@ -37,7 +38,7 @@ class Login extends React.Component {
         const data = { username: this.state.username, password: this.state.password }
         const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/login', data)
         if (response.status === 200) {
-          localStorage.setItem('token', JSON.stringify(response.data.data.token))
+          Cookies.set('token', JSON.stringify(response.data.data.token))
           this.props.history.push('/')
         } else {
           this.setState(prevState => {
@@ -66,7 +67,7 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log('render')
+    console.log('render In Login')
     console.log(this.state.isValid)
     return (
       <div className="container-fluid background-login">

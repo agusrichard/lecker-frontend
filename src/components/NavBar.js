@@ -8,7 +8,8 @@ import {
   NavItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
-import Logo from '../assets/images/navbarLogo.png'
+import BrandLogo from '../assets/images/navbarLogo.png'
+import CartIcon from '../assets/images/cart-icon.svg'
 import '../assets/styles/navbar.css'
 
 const CustomNavbar = (props) => {
@@ -20,7 +21,7 @@ const CustomNavbar = (props) => {
     <Navbar color="dark" dark expand="md" className="sticky-top mb-4">
       <Container>
         <Link to="/"  className="navbar-brand">
-          <img src={ Logo } width="50" height="50" className="d-inline-block align-top mr-2" alt="" />
+          <img src={ BrandLogo } width="50" height="50" className="d-inline-block align-top mr-2" alt="" />
           <span className="navbar-brand-text">LECKER</span>
         </Link>
         <NavbarToggler onClick={toggle} />
@@ -38,8 +39,21 @@ const CustomNavbar = (props) => {
           </Nav>
           <Nav navbar>
             <NavItem>
-              <Link to="/auth/login" className="btn btn-warning px-4 py-2"><span className="btn-login">Login</span></Link>
-            </NavItem>
+            { !props.isLoggedIn ? 
+                <Link to="/auth/login" className="btn btn-warning px-4 py-2">
+                  <span className="btn-login">LOGIN</span>
+                </Link>
+                :
+                 <div>
+                  <Link to="#">
+                    <span className="badge badge-warning mr-2 p-2">0</span>
+                    <img src={ CartIcon } width="40" height="40" className="d-inline-block align-top mr-4" alt="" />
+                  </Link>
+                  <Link to="/auth/login" className="btn btn-info px-4 py-2">
+                    <span className="btn-login">PROFILE</span>
+                  </Link>
+                 </div> }
+              </NavItem> 
           </Nav>
         </Collapse>
       </Container>
