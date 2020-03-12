@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import ItemCard from '../components/ItemCard'
 import CustomNavbar from '../components/NavBar'
+import Footer from '../components/Footer'
 import Pagination from '../components/Pagination'
 import { Container } from 'reactstrap'
 
@@ -59,7 +60,7 @@ class ItemsPage extends React.Component {
     return (
       <div>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } />
-        <Container>
+        <div className="container mb-5">
           <h1 className="text-center mt-5">Our Menus</h1><hr />
           <div class="row mt-5">
             <div class="col-md-6">
@@ -70,7 +71,8 @@ class ItemsPage extends React.Component {
             </div>
           </div>
           <Pagination pagination={this.state.pagination} rerender={this.rerender} route="items"/>
-        </Container>
+        </div>
+        <Footer />
       </div>
     )
   }

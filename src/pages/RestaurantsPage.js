@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import RestaurantCard from '../components/RestaurantCard'
 import CustomNavbar from '../components/NavBar'
+import Footer from '../components/Footer'
 import Pagination from '../components/Pagination'
 import { Container } from 'reactstrap'
 
@@ -61,13 +62,14 @@ class RestaurantsPage extends React.Component {
     return (
       <div>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } />
-        <Container>
+        <div className="container mb-5">
           <h1 className="text-center mt-5">List of Restaurants</h1><hr />
           <div class="row">
             {renderedRestaurants}
           </div>
           <Pagination pagination={this.state.pagination} rerender={this.rerender} route="restaurants"/>
-        </Container>
+        </div>
+        <Footer />
       </div>
     )
   }
