@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 
 function Pagination(props) {
   console.log('In pagination')
+  console.log(props.pagination.previousPage)
+  console.log(props.pagination.nextPage)
   const numLink = [...Array(props.pagination.totalPages).keys()].map(item => {
     if (props.pagination.currentPage === (item+1)) {
       return (
         <li className="page-item active">
           <a className="page-link" 
-                href={'/items?page=' + (item+1)}
-                onClick={props.rerender}>
+                href={'/items?page=' + (item+1)}>
                   {(item+1)}
           </a>
         </li>
@@ -18,8 +19,7 @@ function Pagination(props) {
       return (
         <li className="page-item">
           <a className="page-link" 
-                href={'/items?page=' + (item+1)}
-                onClick={props.rerender}>
+                href={'/items?page=' + (item+1)}>
                   {(item+1)} <span className="sr-only">(current)</span>
           </a>
         </li>
@@ -32,18 +32,19 @@ function Pagination(props) {
       <ul className="pagination justify-content-center">
         { !props.pagination.previousPage ?
           <li className="page-item disabled">
-            <a className="page-link" tabindex="-1" aria-disabled="true">Previous</a>
+            <a className="page-link" tabindex="-1" aria-disabled="true"
+              href={props.pagination.previousPage}>Previous</a>
           </li> : 
           <li className="page-item">
-            <a className="page-link" href="#" tabindex="-1" >Previous</a>
+            <a className="page-link" href={props.pagination.previousPage} tabindex="-1" >Previous</a>
           </li> }
         { numLink } 
         { !props.pagination.nextPage ?
           <li className="page-item disabled">
-            <a className="page-link" href="#" aria-disabled="true">Next</a>
+            <a className="page-link" href={props.pagination.nextPage} aria-disabled="true">Next</a>
           </li> : 
           <li className="page-item">
-            <a className="page-link" href="#">Next</a>
+            <a className="page-link" href={props.pagination.nextPage}>Next</a>
           </li> }
       </ul>
     </nav>

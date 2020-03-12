@@ -41,22 +41,6 @@ class ItemsPage extends React.Component {
     }
   }
 
-  rerender = () => {
-    console.log('rerender')
-    console.log(this.state.currentPage)
-    const pathname = this.props.location.pathname
-    const search = this.props.location.search
-    this.setState({ currentPage: process.env.REACT_APP_BASE_URL + pathname + search })
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate')
-    console.log(this.state.currentPage)
-    if (this.state.currentPage !== prevState.currentPage) {
-      this.getItems()
-    }
-  }
-
   componentDidMount() {
     console.log('componentDidMount')
     console.log(this.state.currentPage)
