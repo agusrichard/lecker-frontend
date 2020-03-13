@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { Spinner } from 'reactstrap'
 import axios from 'axios'
 
 import RegisterForm from '../components/RegisterForm'
@@ -18,7 +19,8 @@ class Register extends React.Component {
       confirmPassword: '',
       message: '',
       isValid: true,
-      isSuccess: false
+      isSuccess: false,
+      isLoading: false
     }
   }
 
@@ -44,6 +46,7 @@ class Register extends React.Component {
             username: this.state.username, 
             password: this.state.password 
           }
+          this.setState({ isLoading: true })
           const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/register', data)
           console.log(response)
           if (response.status === 200) {
@@ -87,7 +90,11 @@ class Register extends React.Component {
                               context="warning" 
                               dismiss={this.dismiss}/> 
             : null }
-          <h3 className="register-heading mb-5 text-center">Register Here</h3>
+          <h3 className="register-heading mb-2">Register Here
+            <span className="ml-3">
+              { this.state.isLoading ? <Spinner type="grow" color="info" className="mx-auto"/> : null }
+            </span>
+          </h3><hr className="hr-separator"/>
           <RegisterForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         </div>
       )
