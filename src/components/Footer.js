@@ -9,7 +9,7 @@ function Footer(props) {
           <div className="row row-30">
             <div className="col-md-4 col-xl-5">
               <div className="pr-xl-4"><a className="brand" href="index.html"><img className="brand-logo-light" src="images/agency/logo-inverse-140x37.png" alt="" width="140" height="37" srcSet="images/agency/logo-retina-inverse-280x74.png 2x" /></a>
-                <p>Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text Placeholder text</p>
+                <p>Second project of Arkademy Bootcamp. Connecting frontend and backend.</p>
                 <p className="rights"><span>©  </span><span className="copyright-year">2020</span><span> </span><span>Richard</span><span>. </span><span>All Rights Reserved.</span></p>
               </div>
             </div>
@@ -20,11 +20,11 @@ function Footer(props) {
                 <dd>Jl.Sukasari III No. 47, Sukasari, Kecamatan Bogor Timur, Kota Bogor, Jawa Barat, Indonesia</dd>
               </dl>
               <dl className="contact-list">
-                <dt>email:</dt>
+                <dt>Email:</dt>
                 <dd><a href="mailto:#">agus.richard21@gmail.com</a></dd>
               </dl>
               <dl className="contact-list">
-                <dt>phones:</dt>
+                <dt>Phone:</dt>
                 <dd>085710276393</dd>
               </dl>
             </div>

@@ -10,11 +10,11 @@ const Dropdown = (props) => {
   return (
     <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret color={props.context}>
-        Button Dropdown
+        Profile
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem header>
-            <Link to="#">Profile</Link>
+        <DropdownItem>
+            <Link to="/users/profile" style={{ textDecoration: 'none' }}>Profile</Link>
         </DropdownItem>
         <DropdownItem divider />
         <DropdownItem onClick={props.logout}>Logout</DropdownItem>

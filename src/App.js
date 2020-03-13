@@ -12,6 +12,7 @@ import ForgotPassword from './pages/ForgotPassword'
 import ItemsPage from './pages/ItemsPage'
 import RestaurantsPage from './pages/RestaurantsPage'
 import CreateRestaurant from './pages/CreateRestaurant'
+import UserProfile from './pages/UserProfile'
 
 
 class App extends React.Component {
@@ -26,6 +27,7 @@ class App extends React.Component {
           <Route path="/items" component={ ItemsPage }/>
           <Route path="/restaurants" component={ RestaurantsPage }/>
           <Route path="/create-restaurant" component={ CreateRestaurant }/>
+          <Route path="/users/profile" component={ UserProfile }/>
         </Switch>
       </BrowserRouter>
     );

@@ -50,7 +50,7 @@ class RestaurantsPage extends React.Component {
   }
 
   render() {
-
+    console.log(this.state.currentPage)
     const renderedRestaurants = this.state.listOfRestaurants.map(item => {
       return (
         <div class="col-lg-4 col-md-6 col-sm-12 p-3">
