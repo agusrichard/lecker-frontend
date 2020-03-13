@@ -55,7 +55,7 @@ class UserProfile extends React.Component {
     console.log(this.state.profile.profile_picture)
     return (
       <div>
-        <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={this.logout}/>
+        <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={ this.logout }/>
         <Container>
           <div className="card border-warning mb-3 p-3">
             <div className="row no-gutters">

@@ -19,7 +19,8 @@ function ChangeProfileForm(props) {
       </div>
       <div className="form-group">
         <label htmlFor="formControlFile">Profile Picture</label>
-        <input type="file" className="form-control-file" id="formControlFile" name="profilePicture"/>
+        <input type="file" className="form-control-file" id="formControlFile" 
+                name="profilePicture" onChange={props.handleFile} />
       </div>   
       <div className="form-group">
         <button type="submit" className="btn btn-success btn-lg btn-block" onClick={props.handleSubmit}>Update</button>

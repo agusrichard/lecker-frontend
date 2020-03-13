@@ -14,6 +14,7 @@ class ChangeProfile extends React.Component {
 			isLoggedIn: false,
 			email: '',
 			fullName: '',
+			profilePicture: '',
 			profile: ''
     }
 	}
@@ -47,7 +48,11 @@ class ChangeProfile extends React.Component {
       console.log(err)
       alert('Failed to load user profile')
     }
-  }
+	}
+	
+	handleFile = (event) => {
+		this.setState({ profilePicture: event.target.files[0] })
+	}
 	
 	handleSubmit = async (event) => {
 		console.log('handleSubmit')
@@ -56,8 +61,12 @@ class ChangeProfile extends React.Component {
 		token = token.slice(1, token.length-1)
 		try {
 			const config = { headers: { Authorization: `Bearer ${token}` } }
-			const data = { email: this.state.email, fullName: this.state.fullName }
-			const response = await axios.patch(process.env.REACT_APP_BASE_URL + '/users/change-profile', data, config)
+			let formData = new FormData()
+			formData.append('profilePicture', this.state.profilePicture)
+			formData.append('email', this.state.email)
+			formData.append('fullName', this.state.fullName)
+
+			const response = await axios.patch(process.env.REACT_APP_BASE_URL + '/users/change-profile', formData, config)
 			console.log(response)
 			if (response.status === 200) {
 				this.props.history.push('/users/profile')
@@ -78,6 +87,11 @@ class ChangeProfile extends React.Component {
   componentDidMount() {
 		this.checklog()
 		this.getUserProfile()
+		this.setState({
+			email: this.state.profile.email,
+			fullName: this.state.profile.full_name,
+			profilePicture: this.state.profile.profile_picture
+		})
 	}
 	
 	render() {
@@ -88,6 +102,7 @@ class ChangeProfile extends React.Component {
           <ChangeProfileForm 
 						handleChange={this.handleChange}
 						handleSubmit={this.handleSubmit}
+						handleFile={this.handleFile}
 						profile={this.state.profile}
 					/>
         </div>
