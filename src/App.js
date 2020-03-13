@@ -11,6 +11,7 @@ import Register from './pages/Register'
 import ForgotPassword from './pages/ForgotPassword'
 import ItemsPage from './pages/ItemsPage'
 import RestaurantsPage from './pages/RestaurantsPage'
+import CreateRestaurant from './pages/CreateRestaurant'
 
 
 class App extends React.Component {
@@ -24,6 +25,7 @@ class App extends React.Component {
           <Route path="/auth/forgot-password" component={ ForgotPassword }/>
           <Route path="/items" component={ ItemsPage }/>
           <Route path="/restaurants" component={ RestaurantsPage }/>
+          <Route path="/create-restaurant" component={ CreateRestaurant }/>
         </Switch>
       </BrowserRouter>
     );
