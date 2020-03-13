@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie'
 import {
   Container,
   Collapse,
@@ -10,7 +11,9 @@ import {
 import { Link } from 'react-router-dom'
 import BrandLogo from '../assets/images/navbarLogo.png'
 import CartIcon from '../assets/images/cart-icon.svg'
+import Dropdown from '../components/Dropdown'
 import '../assets/styles/navbar.css'
+
 
 const CustomNavbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,9 +52,7 @@ const CustomNavbar = (props) => {
                     <span className="badge badge-warning mr-2 p-2">0</span>
                     <img src={ CartIcon } width="40" height="40" className="d-inline-block align-top mr-4" alt="" />
                   </Link>
-                  <Link to="/auth/login" className="btn btn-info px-4 py-2">
-                    <span className="btn-login">PROFILE</span>
-                  </Link>
+                  <Dropdown context="info" logout={props.logout}/>
                  </div> }
               </NavItem> 
           </Nav>
