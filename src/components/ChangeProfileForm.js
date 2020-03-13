@@ -10,12 +10,12 @@ function ChangeProfileForm(props) {
       <div className="form-group">
         <input type="text" className="form-control" name="email" 
                 placeholder={props.profile.email} required="required" 
-                onChange={props.handleChange}/>
+                onChange={props.handleChange} />
       </div>
       <div className="form-group">
         <input type="text" className="form-control" name="fullName" 
                 placeholder={props.profile.full_name} required="required" 
-                onChange={props.handleChange}/>
+                onChange={props.handleChange} />
       </div>
       <div className="form-group">
         <label htmlFor="formControlFile">Profile Picture</label>
