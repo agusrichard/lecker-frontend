@@ -51,7 +51,7 @@ class Register extends React.Component {
           console.log(response)
           if (response.status === 200) {
             this.setState(prevState => {
-              return { isSuccess: !prevState.isSuccess }
+              return { isSuccess: !prevState.isSuccess, isLoading: !prevState.isLoading }
             })
           }
         } else {
