@@ -1,23 +1,23 @@
 import React from 'react'
 
 
-function ForgotPasswordForm(props) {
+function ForgotPasswordSuccessForm(props) {
   return (
     <form method="post">
       <div className="form-label-group">
-        <input type="text" id="inputEmail" className="form-control" 
-              placeholder="Email" name="email" 
+        <input type="password" id="inputNewPassword" className="form-control" 
+              placeholder="New Password" name="newPassword" 
               onChange={props.handleChange}
               required autoFocus />
-        <label htmlFor="inputEmail">Email</label>
+        <label htmlFor="inputNewPassword">New Password</label>
       </div>
 
       <div className="form-label-group">
-        <input type="text" id="inputUsername" className="form-control" 
-              placeholder="Username" name="username" 
+        <input type="password" id="inputConfirmPassword" className="form-control" 
+              placeholder="Confirm Password" name="confirmPassword" 
               onChange={props.handleChange}
               required />
-        <label htmlFor="inputUsername">Username</label>
+        <label htmlFor="inputConfirmPassword">Confirm Password</label>
       </div>
 
       <button className="btn btn-lg btn-primary btn-block btn-forgotpassword text-uppercase font-weight-bold mb-2 mt-5" 
@@ -26,4 +26,4 @@ function ForgotPasswordForm(props) {
   )
 }
 
-export default ForgotPasswordForm
+export default ForgotPasswordSuccessForm

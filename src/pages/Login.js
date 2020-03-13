@@ -30,8 +30,6 @@ class Login extends React.Component {
   }
 
   handleSubmit = async (event) => {
-    console.log('handleSubmit')
-    console.log(this.state.isValid)
     event.preventDefault()
     try {
       if (this.state.username && this.state.password) {
@@ -67,8 +65,6 @@ class Login extends React.Component {
   }
 
   render() {
-    console.log('render In Login')
-    console.log(this.state.isValid)
     return (
       <div className="container-fluid background-login">
         <Helmet>

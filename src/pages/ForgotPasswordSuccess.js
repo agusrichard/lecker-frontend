@@ -4,24 +4,19 @@ import { Spinner } from 'reactstrap'
 import axios from 'axios'
 
 import ForgotPasswordForm from '../components/ForgotPasswordForm'
-import ForgotPasswordSuccessForm from '../components/ForgotPasswordSuccessForm'
 import DismissableAlert from '../components/DismissableAlert'
 import '../assets/styles/forgotpassword.css'
 
-class ForgotPassword extends React.Component {
+class ForgotPasswordSuccess extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       email: '',
       username: '',
       message: '',
-      newPassword: '',
-      confirmPassword: '',
-      token: '',
       isValid: true,
       isSuccess: false,
-      isLoading: false,
-      readyToReset: false
+      isLoading: false
     }
   }
 
@@ -35,13 +30,12 @@ class ForgotPassword extends React.Component {
     })
   }
 
-  handleSubmitForgot = async (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault()
     try {
       if (this.state.username && this.state.email) {
         const data = { username: this.state.username, email: this.state.email }
         this.setState({ isLoading: true })
-        console.log()
         const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/forgot-password', data)
         console.log(response)
         if (response.status === 200) {
@@ -68,61 +62,9 @@ class ForgotPassword extends React.Component {
     }
   }
 
-  handleSubmitReset = async (event) => { 
-    event.preventDefault()
-    try {
-      if (this.state.newPassword && this.state.confirmPassword) {
-        if (this.state.newPassword === this.state.confirmPassword) {
-          const data = { newPassword: this.state.newPassword, confirmPassword: this.state.confirmPassword }
-          this.setState({ isLoading: true })
-          console.log(process.env.REACT_APP_BASE_URL + '/auth/forgot-password/success' + this.state.token)
-          const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/forgot-password/success' + this.state.token, data)
-          console.log(response)
-          if (response.status === 200) {
-            this.props.history.push('/auth/login')
-            this.setState(prevState => {
-              return { isSuccess: !prevState.isSuccess, isLoading: !prevState.isLoading }
-            })
-          }
-        } else {
-          this.setState(prevState => {
-            return {
-              isValid: !prevState.isValid,
-              message: 'New password and confirm password must match'
-            }
-          })
-        }
-      } else {
-        this.setState(prevState => {
-          return {
-            isValid: !prevState.isValid,
-            message: 'Please provide new password and confirm password'
-          }
-        })
-      }
-    } catch(err) {
-      console.log(err)
-      this.setState(prevState => {
-        return {
-          isValid: !prevState.isValid,
-          message: 'Can\'t change password'
-        }
-      })
-    }
-  }
-
-  componentDidMount() {
-    const code = this.props.location.search
-    console.log(code)
-    if (code) {
-      console.log('here')
-      this.setState({ readyToReset: true, token: code })
-    }
-  }
-
   render() {
     let inside = ''
-    if (this.state.readyToReset) {
+    if (!this.state.isSuccess) {
       inside = (
         <div>
           { !this.state.isValid ? 
@@ -135,23 +77,7 @@ class ForgotPassword extends React.Component {
               { this.state.isLoading ? <Spinner type="grow" color="info" className="mx-auto"/> : null }
             </span>
           </h3><hr className="hr-separator"/>
-          <ForgotPasswordSuccessForm handleChange={this.handleChange} handleSubmit={this.handleSubmitReset} />
-        </div>
-      )
-    } else if (!this.state.isSuccess) {
-      inside = (
-        <div>
-          { !this.state.isValid ? 
-            <DismissableAlert message={this.state.message} 
-                              context="warning" 
-                              dismiss={this.dismiss}/> 
-            : null }
-          <h3 className="register-heading">Forgot Password
-            <span className="ml-3">
-              { this.state.isLoading ? <Spinner type="grow" color="info" className="mx-auto"/> : null }
-            </span>
-          </h3><hr className="hr-separator"/>
-          <ForgotPasswordForm handleChange={this.handleChange} handleSubmit={this.handleSubmitForgot}/>
+          <ForgotPasswordForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         </div>
       )
     } else {
@@ -182,4 +108,4 @@ class ForgotPassword extends React.Component {
   }
 }
 
-export default ForgotPassword
+export default ForgotPasswordSuccess
