@@ -1,6 +1,7 @@
 import React from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import RestaurantCard from '../components/RestaurantCard'
 import CustomNavbar from '../components/NavBar'
@@ -48,8 +49,6 @@ class RestaurantsPage extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
-    console.log(this.state.currentPage)
     this.checklog()
     this.getRestaurants()
   }
@@ -73,6 +72,7 @@ class RestaurantsPage extends React.Component {
             {renderedRestaurants}
           </div>
           <Pagination pagination={this.state.pagination} rerender={this.rerender} route="restaurants"/>
+          <span className="border border-warning px-5 py-2">Want your own restaurant? <Link to="/create-restaurant">Go here</Link></span>
         </div>
         <Footer />
       </div>

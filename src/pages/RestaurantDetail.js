@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { Helmet } from 'react-helmet'
 import CustomNavbar from '../components/NavBar'
 import CustomModal from '../components/CustomModal'
 import { Container } from 'reactstrap'
@@ -52,6 +53,9 @@ class RestaurantDetail extends React.Component {
     console.log(this.state.topupAmount)
     return (
       <div>
+        <Helmet>
+          <title>Lecker - Restaurant Detail</title>
+        </Helmet>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={ this.logout }/>
         <Container>
           <div className="card border-warning mb-3 p-3">
