@@ -6,7 +6,6 @@ import RestaurantCard from '../components/RestaurantCard'
 import CustomNavbar from '../components/NavBar'
 import Footer from '../components/Footer'
 import Pagination from '../components/Pagination'
-import { Container } from 'reactstrap'
 
 class RestaurantsPage extends React.Component {
   constructor(props) {
@@ -17,6 +16,12 @@ class RestaurantsPage extends React.Component {
       currentPage: process.env.REACT_APP_BASE_URL + this.props.location.pathname + this.props.location.search,
       listOfRestaurants: []
     }
+  }
+
+  logout = () => {
+    Cookies.remove('token')
+    this.setState({ isLoggedIn: false })
+    this.props.history.push('/')
   }
 
   checklog = () => {
@@ -54,17 +59,17 @@ class RestaurantsPage extends React.Component {
     const renderedRestaurants = this.state.listOfRestaurants.map(item => {
       return (
         <div class="col-lg-4 col-md-6 col-sm-12 p-3">
-          <RestaurantCard item={item}/>
+          <RestaurantCard key={item.id} item={item}/>
         </div>
       )
     })
 
     return (
       <div>
-        <CustomNavbar isLoggedIn={ this.state.isLoggedIn } />
+        <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={ this.logout }/>
         <div className="container mb-5">
           <h1 className="text-center mt-5">List of Restaurants</h1><hr />
-          <div class="row">
+          <div className="row">
             {renderedRestaurants}
           </div>
           <Pagination pagination={this.state.pagination} rerender={this.rerender} route="restaurants"/>

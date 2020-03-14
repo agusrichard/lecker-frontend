@@ -20,7 +20,7 @@ class UserProfile extends React.Component {
   logout = () => {
     Cookies.remove('token')
     this.setState({ isLoggedIn: false })
-    this.props.history.goBack()
+    this.props.history.push('/')
   }
 
   checklog = () => {
@@ -125,6 +125,7 @@ class UserProfile extends React.Component {
                       btnMessage="Delete"/>
                   </span>
                   </h5>
+                  <p className="card-text" style={{ color: '#ffc107', fontSize: '1.5rem' }}>Balance: Rp. {this.state.profile.balance}</p>
                   <p className="card-text">{this.state.profile.username}</p>
                   <p className="card-text"><small className="text-muted">{new Date(this.state.profile.date_created).toLocaleString()}</small></p>
                 </div>

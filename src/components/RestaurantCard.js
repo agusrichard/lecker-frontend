@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import RestaurantImage from '../assets/images/restaurant-image.jpg'
 
 function RestaurantCard(props) {
@@ -10,7 +11,7 @@ function RestaurantCard(props) {
         <p class="card-text">{props.item.description}</p>
       </div>
       <div class="card-footer text-center bg-white">
-        <a class="btn btn-outline-secondary" href="#">View Details</a>
+        <Link class="btn btn-outline-secondary" to={ `/restaurants/${props.item.id}` }>View Details</Link>
       </div>
     </div>
   )
