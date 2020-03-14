@@ -30,6 +30,23 @@ class RestaurantDetail extends React.Component {
     }
   }
 
+  deleteRestaurant = async () => {
+    const restaurantId = this.props.match.params.restaurantId
+    try {
+      let token = Cookies.get('token')
+      token = token.slice(1, token.length-1)
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const response = await axios.delete(process.env.REACT_APP_BASE_URL +  `/restaurants/${restaurantId}`, config)
+      console.log(response)
+      if (response.status === 200) {
+        this.props.history.push('/restaurants')
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to delete restaurant')
+    }
+  }
+
   getRestaurantDetail = async () => {
     const restaurantId = this.props.match.params.restaurantId
     try {
@@ -65,7 +82,16 @@ class RestaurantDetail extends React.Component {
               </div>
               <div className="col-md-8">
                 <div className="card-body">
-                  <h5 className="card-title">{this.state.restaurantDetail.name}</h5>
+                <h5 className="card-title">{this.state.restaurantDetail.name}
+                  <span>
+                    <Link className="btn btn-info ml-2 mr-2 px-4 py-2" to="#">Update Restaurant</Link>
+                    <CustomModal 
+                      buttonLabel="Delete Restaurant" 
+                      deleteUser={this.deleteRestaurant} 
+                      message="Are you sure want to delete your restaurant?"
+                      btnMessage="Delete"/>
+                  </span>
+                  </h5>
                   <p className="card-text">Location: {this.state.restaurantDetail.location}</p>
                   <p className="card-text">Description: {this.state.restaurantDetail.description}</p>
                   <p className="card-text">Established: <small className="text-muted">{new Date(this.state.restaurantDetail.date_created).toLocaleString()}</small></p>
