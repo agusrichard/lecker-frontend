@@ -1,9 +1,7 @@
 import React from 'react'
-import { Container } from 'reactstrap'
 import Cookies from 'js-cookie'
 import CustomNavbar from '../components/NavBar'
 import Footer from '../components/Footer'
-import ItemCard from '../components/ItemCard'
 
 import '../assets/styles/home.css'
 

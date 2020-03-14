@@ -25,7 +25,12 @@ class Register extends React.Component {
   }
 
   dismiss = () => {
-    this.setState({ isValid: true })
+    this.setState(prevState => { 
+      return {
+        isValid: !prevState.isValid, 
+        isLoading: prevState.isLoading
+      }
+    })
   }
 
   handleChange = (event) => {
@@ -58,6 +63,7 @@ class Register extends React.Component {
           this.setState(prevState => {
             return {
               isValid: !prevState.isValid,
+              isLoading: prevState.isLoading,
               message: 'Password and Confirm Password Must Match'
             }
           })
@@ -66,6 +72,7 @@ class Register extends React.Component {
         this.setState(prevState => {
           return {
             isValid: !prevState.isValid,
+            isLoading: prevState.isLoading,
             message: 'Please provide the required fields'
           }
         })
@@ -74,6 +81,7 @@ class Register extends React.Component {
       this.setState(prevState => {
         return {
           isValid: !prevState.isValid,
+          isLoading: prevState.isLoading,
           message: 'Username is already used'
         }
       })

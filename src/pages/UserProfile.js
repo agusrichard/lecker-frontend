@@ -3,29 +3,54 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import CustomNavbar from '../components/NavBar'
 import CustomModal from '../components/CustomModal'
-import { Container, Button } from 'reactstrap'
+import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import Image from '../assets/images/restaurant-image.jpg'
+import Image from '../assets/images/profile-picture-placeholder.png'
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isLoggedIn: false,
-      profile: ''
+      profile: '',
+      topupAmount: ''
     }
   }
 
   logout = () => {
     Cookies.remove('token')
     this.setState({ isLoggedIn: false })
-    this.props.history.push('/')
+    this.props.history.goBack()
   }
 
   checklog = () => {
     const token = Cookies.get('token')
     if (token) {
       this.setState({ isLoggedIn: true })
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  topup = async () => {
+    try {
+      let token = Cookies.get('token')
+      token = token.slice(1, token.length-1)
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const amount = this.state.topupAmount
+      const response = await axios.patch(process.env.REACT_APP_BASE_URL + '/users/topup', { amount } ,config)
+      console.log(response)
+      if (response.status === 200) {
+        alert('Top up success')
+        this.props.history.push('/')
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to topup')
     }
   }
 
@@ -37,6 +62,7 @@ class UserProfile extends React.Component {
       const response = await axios.delete(process.env.REACT_APP_BASE_URL + '/users/profile', config)
       console.log(response)
       if (response.status === 200) {
+        this.logout()
         this.props.history.push('/auth/login')
       }
     } catch(err) {
@@ -70,7 +96,7 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    console.log(this.state.profile.profile_picture)
+    console.log(this.state.topupAmount)
     return (
       <div>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={ this.logout }/>
@@ -84,8 +110,19 @@ class UserProfile extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title">{this.state.profile.full_name}
                   <span>
-                    <Link className="btn btn-info ml-4 mr-2 px-4 py-2" to="/users/change-profile">Change Profile</Link>
-                    <CustomModal buttonLabel="Delete Account" deleteUser={this.deleteUser}/>
+                    <CustomModal 
+                      buttonLabel="Topup" 
+                      deleteUser={this.topup} 
+                      message="Please provide the topup amount:"
+                      btnMessage="Topup" 
+                      handleChange={this.handleChange} 
+                      topup={this.topup}/>
+                    <Link className="btn btn-info ml-2 mr-2 px-4 py-2" to="/users/change-profile">Change Profile</Link>
+                    <CustomModal 
+                      buttonLabel="Delete Account" 
+                      deleteUser={this.deleteUser} 
+                      message="Are you sure want to delete your account?"
+                      btnMessage="Delete"/>
                   </span>
                   </h5>
                   <p className="card-text">{this.state.profile.username}</p>
