@@ -14,8 +14,15 @@ class ItemsPage extends React.Component {
       isLoggedIn: false,
       pagination: '',
       currentPage: process.env.REACT_APP_BASE_URL + this.props.location.pathname + this.props.location.search,
-      listOfItems: []
+      listOfItems: [],
+      selectedItems: []
     }
+  }
+
+  logout = () => {
+    Cookies.remove('token')
+    this.setState({ isLoggedIn: false })
+    this.props.history.push('/')
   }
 
   checklog = () => {
@@ -41,31 +48,43 @@ class ItemsPage extends React.Component {
     }
   }
 
+  handleClick = (itemId) => {
+    this.setState(prevState => {
+      return {
+        selectedItems: [...prevState.selectedItems, itemId]
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    Cookies.set('items', JSON.stringify(this.state.selectedItems))
+  }
+
   componentDidMount() {
-    console.log('componentDidMount')
-    console.log(this.state.currentPage)
+    const items = JSON.parse(Cookies.get('items'));
+    this.setState({
+      selectedItems: items
+    })
     this.checklog()
     this.getItems()
   }
 
 
   render() {
-    console.log('render')
-    console.log(this.state.currentPage)
     const itemsInCol = this.state.listOfItems.length
-    const itemsColOne = this.state.listOfItems.slice(0, Math.ceil(itemsInCol / 2)).map(item => <ItemCard item={item} />)
-    const itemsColTwo = this.state.listOfItems.slice(Math.ceil(itemsInCol / 2)).map(item => <ItemCard item={item} />)
+    const itemsColOne = this.state.listOfItems.slice(0, Math.ceil(itemsInCol / 2)).map(item => <ItemCard key={item.id} item={item} handleClick={this.handleClick}/>)
+    const itemsColTwo = this.state.listOfItems.slice(Math.ceil(itemsInCol / 2)).map(item => <ItemCard key={item.id} item={item} handleClick={this.handleClick}/>)
 
     return (
       <div>
-        <CustomNavbar isLoggedIn={ this.state.isLoggedIn } />
+        <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={ this.logout } totalItems={this.state.selectedItems.length}/>
         <div className="container mb-5">
           <h1 className="text-center mt-5">Our Menus</h1><hr />
-          <div class="row mt-5">
-            <div class="col-md-6">
+          <div className="row mt-5">
+            <div className="col-md-6">
               { itemsColOne }
             </div>
-            <div class="col-md-6">
+            <div className="col-md-6">
               { itemsColTwo }
             </div>
           </div>

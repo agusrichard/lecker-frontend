@@ -49,7 +49,7 @@ const CustomNavbar = (props) => {
                 :
                  <div>
                   <Link to="#">
-                    <span className="badge badge-warning mr-2 p-2">0</span>
+                    <span className="badge badge-warning mr-2 p-2">{props.totalItems}</span>
                     <img src={ CartIcon } width="40" height="40" className="d-inline-block align-top mr-4" alt="" />
                   </Link>
                   <Dropdown context="info" logout={props.logout}/>

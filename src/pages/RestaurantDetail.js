@@ -129,14 +129,14 @@ class RestaurantDetail extends React.Component {
             </div>
           </div>
           <h3 className="text-center">List of our menus</h3>
-          <div class="row mt-5">
+          { itemsInCol !== 0 ?<div class="row mt-5">
             <div class="col-md-6">
               { itemsColOne }
             </div>
             <div class="col-md-6">
               { itemsColTwo }
             </div>
-          </div>
+          </div> : <p className="text-center">No item</p>}
         </Container>
         <Footer />
       </div>
