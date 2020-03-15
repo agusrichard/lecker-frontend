@@ -1,11 +1,12 @@
 import React from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import CustomNavbar from '../components/NavBar'
-import Pagination from '../components/Pagination'
 import Footer from '../components/Footer'
 import ItemCard from '../components/ItemCard'
+import CheckoutModal from '../components/CheckoutModal'
 
 class Cart extends React.Component {
 
@@ -13,6 +14,9 @@ class Cart extends React.Component {
     super(props)
     this.state = {
       isLoggedIn: false,
+      checkoutSuccess: false,
+      currentBalance: 0,
+      checkedOutItems: [],
       expenses: 0,
       listOfItems: []
     }
@@ -64,6 +68,26 @@ class Cart extends React.Component {
     }
   }
 
+  checkout = async () => {
+    try {
+      let token = Cookies.get('token')
+      token = token.slice(1, token.length-1)
+      const config = { headers: { Authorization: `Bearer ${token}` } }
+      const response = await axios.get(process.env.REACT_APP_BASE_URL + '/cart/checkout', config)
+      if (response.status === 200) {
+        this.setState(prevState => {
+          return {
+            checkoutSuccess: !prevState.checkoutSuccess,
+            currentBalance: response.data.currentBalance,
+            listOfItems: response.data.items
+          }
+        })
+      }
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
   componentDidMount() {
     this.checklog()
     this.postItems()
@@ -80,9 +104,25 @@ class Cart extends React.Component {
     return (
       <div>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={ this.logout } totalItems={this.state.listOfItems.length}/>
-        <div className="container mb-5">
-          <h1 className="text-center mt-5">Selected items in your cart</h1><hr />
-          <h2 className="text-center mt-2">Expenses: Rp. {this.state.expenses}</h2>
+        { !this.state.checkoutSuccess ? 
+          <div className="container mb-5">
+            <h1 className="text-center mt-5">Selected items in your cart
+              <CheckoutModal 
+                checkout={this.checkout}/>
+            </h1><hr />
+            <h2 className="text-center mt-2">Expenses: Rp. {this.state.expenses}</h2>
+            <div className="row mt-5">
+              <div className="col-md-6">
+                { itemsColOne }
+              </div>
+              <div className="col-md-6">
+                { itemsColTwo }
+              </div>
+            </div>
+          </div> :
+          <div className="container mb-5">
+          <h1 className="text-center mt-5">Checkout Items</h1><hr />
+          <h2 className="text-center mt-2">Current Balance: Rp. {this.state.currentBalance}</h2>
           <div className="row mt-5">
             <div className="col-md-6">
               { itemsColOne }
@@ -92,6 +132,7 @@ class Cart extends React.Component {
             </div>
           </div>
         </div>
+         }
         <Footer />
       </div>
     )
