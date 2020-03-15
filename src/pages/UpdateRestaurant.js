@@ -8,7 +8,7 @@ import Footer from '../components/Footer'
 import CreateRestaurantForm from '../components/CreateRestaurantForm'
 import '../assets/styles/create-restaurant.css'
 
-class CreateRestaurant extends React.Component{
+class UpdateRestaurant extends React.Component{
 
   constructor(props) {
     super(props)
@@ -17,7 +17,8 @@ class CreateRestaurant extends React.Component{
       name: '',
       location: '',
       description: '', 
-      logo: ''
+      logo: '',
+      restaurantDetail: ''
     }
   }
 
@@ -52,40 +53,58 @@ class CreateRestaurant extends React.Component{
     try {
         const config = { headers: { Authorization: `Bearer ${token}` } }
         let formData = new FormData()
-        formData.append('logo', this.state.logo)
-        formData.append('name', this.state.name)
-        formData.append('location', this.state.location)
-        formData.append('description', this.state.description)
+        formData.append('logo', this.state.logo || this.state.restaurantDetail.logo)
+        formData.append('name', this.state.name || this.state.restaurantDetail.name)
+        formData.append('location', this.state.location || this.state.restaurantDetail.location)
+        formData.append('description', this.state.description || this.state.restaurantDetail.description)
 
-        const response = await axios.post(process.env.REACT_APP_BASE_URL + '/restaurants', formData, config)
+        const response = await axios.patch(process.env.REACT_APP_BASE_URL + `/restaurants/${this.state.restaurantDetail.id}`, formData, config)
         console.log(response)
         if (response.status === 200) {
-            this.props.history.push('/restaurants')
+            this.props.history.push(`/restaurants/${this.state.restaurantDetail.id}`)
         }
     } catch(err) {
         console.log(err)
-        alert('Failed to create restaurant')
+        alert('Failed to update restaurant')
+    }
+  }
+
+  getRestaurantDetail = async () => {
+    const restaurantId = this.props.match.params.restaurantId
+    console.log('getRestaurantDetail')
+    console.log(restaurantId)
+    try {
+      const response = await axios.get(process.env.REACT_APP_BASE_URL + `/restaurants/${restaurantId}`)
+      console.log(response)
+      if (response.status === 200) {
+        this.setState({ restaurantDetail: response.data.data })
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to load restaurant detail')
     }
   }
 
   componentDidMount() {
     this.checklog()
+    this.getRestaurantDetail()
   }
 
   render() {
-    console.log(this.state.logo)
+    console.log(this.state.restaurantDetail)
     return (
       <div>
         <Helmet>
-          <title>Lecker - Create Restaurant</title>
+          <title>Lecker - Update Restaurant</title>
         </Helmet>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={ this.logout }/>
         <div className="signup-form">
           <CreateRestaurantForm 
-            title="Create"
+            title="Update"
             handleChange={this.handleChange}
             handleFile={this.handleFile}
             handleSubmit={this.handleSubmit}
+            restaurantDetail={this.state.restaurantDetail}
             />
         </div>
         <Footer />
@@ -95,4 +114,4 @@ class CreateRestaurant extends React.Component{
 }
 
 
-export default CreateRestaurant
+export default UpdateRestaurant

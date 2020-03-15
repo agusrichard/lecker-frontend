@@ -67,7 +67,6 @@ class RestaurantDetail extends React.Component {
   }
 
   render() {
-    console.log(this.state.topupAmount)
     return (
       <div>
         <Helmet>
@@ -84,7 +83,7 @@ class RestaurantDetail extends React.Component {
                 <div className="card-body">
                 <h5 className="card-title">{this.state.restaurantDetail.name}
                   <span>
-                    <Link className="btn btn-info ml-2 mr-2 px-4 py-2" to="#">Update Restaurant</Link>
+                    <Link className="btn btn-info ml-2 mr-2 px-4 py-2" to={`/restaurants/${this.state.restaurantDetail.id}/update`}>Update Restaurant</Link>
                     <CustomModal 
                       buttonLabel="Delete Restaurant" 
                       deleteUser={this.deleteRestaurant} 
