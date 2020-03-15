@@ -18,7 +18,7 @@ function CreateRestaurantForm(props) {
           onChange={props.handleChange} />
       </div>
       <div className="form-group">
-        <input type="textarea" className="form-control" name="description" 
+        <textarea className="form-control" name="description" 
           placeholder={props.restaurantDetail ? props.restaurantDetail.description : 'Description'} required="required" 
           onChange={props.handleChange} />
       </div>

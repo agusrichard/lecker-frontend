@@ -6,7 +6,6 @@ import ItemCard from '../components/ItemCard'
 import CustomNavbar from '../components/NavBar'
 import Footer from '../components/Footer'
 import Pagination from '../components/Pagination'
-import { Container } from 'reactstrap'
 
 class ItemsPage extends React.Component {
   constructor(props) {
