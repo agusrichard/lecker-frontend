@@ -75,6 +75,7 @@ class Cart extends React.Component {
       const config = { headers: { Authorization: `Bearer ${token}` } }
       const response = await axios.get(process.env.REACT_APP_BASE_URL + '/cart/checkout', config)
       if (response.status === 200) {
+        Cookies.remove('items')
         this.setState(prevState => {
           return {
             checkoutSuccess: !prevState.checkoutSuccess,
