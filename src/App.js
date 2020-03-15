@@ -16,6 +16,7 @@ import UserProfile from './pages/UserProfile'
 import ChangeProfile from './pages/ChangeProfile'
 import RestaurantDetail from './pages/RestaurantDetail'
 import UpdateRestaurant from './pages/UpdateRestaurant'
+import Cart from './pages/Cart'
 
 
 class App extends React.Component {
@@ -29,11 +30,12 @@ class App extends React.Component {
           <Route path="/auth/forgot-password" component={ ForgotPassword } />
           <Route path="/users/profile" component={ UserProfile } />
           <Route path="/users/change-profile" component={ ChangeProfile } />
-          <Route path="/items" component={ ItemsPage }/>
           <Route path="/restaurants/:restaurantId/update" component={ UpdateRestaurant } />
           <Route path="/restaurants/:restaurantId" component={ RestaurantDetail } />
           <Route path="/restaurants" component={ RestaurantsPage } />
           <Route path="/create-restaurant" component={ CreateRestaurant } />
+          <Route path="/items" component={ ItemsPage }/>
+          <Route path="/cart" component={ Cart } />
         </Switch>
       </BrowserRouter>
     );

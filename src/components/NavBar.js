@@ -48,7 +48,7 @@ const CustomNavbar = (props) => {
                 </Link>
                 :
                  <div>
-                  <Link to="#">
+                  <Link to="/cart">
                     <span className="badge badge-warning mr-2 p-2">{props.totalItems}</span>
                     <img src={ CartIcon } width="40" height="40" className="d-inline-block align-top mr-4" alt="" />
                   </Link>

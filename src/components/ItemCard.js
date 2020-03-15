@@ -11,9 +11,10 @@ function ItemCard(props) {
       <div className="menu_content">
         <h4>{props.item.name}  <span>Rp. {props.item.price}</span></h4>
         <p>{props.item.description}</p>
+        { props.handleClick ? 
         <div className="d-flex">
           <Button color="success" className="ml-auto px-4 py-2" onClick={() => props.handleClick(props.item.id)}>Buy</Button>
-        </div>
+        </div> : null}
       </div>
     </div>
   )
