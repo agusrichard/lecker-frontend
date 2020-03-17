@@ -44,7 +44,7 @@ const CustomNavbar = (props) => {
           <Nav navbar>
             <NavItem>
               <Link to="/auth/login" className="btn-login">
-                <span className="btn-login">LOGIN</span>
+                <span className="login-text">LOGIN</span>
               </Link>
             </NavItem> 
           </Nav>

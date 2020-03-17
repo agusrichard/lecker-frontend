@@ -34,10 +34,12 @@
   color: #FFFFFF;
   background-color: #A677C4;
   font-weight: bold;
+  padding: 0;
 }
 
 .btn-login:hover {
-  color: #BA0295;
+  color: #fff;
+  background-color: #BA0295;
   transition: 0.5s;
   text-decoration: none;
 }
