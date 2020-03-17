@@ -22,7 +22,7 @@ const CustomNavbar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar expand="md" className="sticky-top mb-4" >
+    <Navbar expand="md" className="fixed-top nav" >
       <Container>
         <Link to="/"  className="navbar-brand d-flex align-items-center">
           <img src={ BrandLogo } width="75" height="75" className="mr-2" alt="" />

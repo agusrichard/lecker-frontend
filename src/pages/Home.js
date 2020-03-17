@@ -37,9 +37,8 @@ class Home extends React.Component {
     return(
       <div>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={this.logout}/>
+        <section className="home"></section>
         <div className="container">
-          <h1 className="text-center">Welcome</h1>
-          <section className="home"></section>
           <div class="row d-flex justify-content-center">
             <div class="col-md-6">
               <CustomCarousel />
