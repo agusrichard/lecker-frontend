@@ -14,10 +14,21 @@
     padding-bottom: 5px;
 }
 
-.nav-list li a:hover:before {
-    margin-left: 0;
-    opacity: 1;
-    visibility: visible;
+.nav-list li a {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.nav-list li a:hover {
+    margin-left: 1rem;
+    transition: 0.3s;
+    color: #A377C4;
+}
+
+.contact-list dd a:hover {
+    text-decoration: none;
+    color: #A377C4;
+    transition: 0.3s ease;
 }
 
 ul, ol {
@@ -36,13 +47,19 @@ ul, ol {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.5);
 }
+
+.social-inner:hover {
+    text-decoration: none;
+    color: #A377C4;
+}
+
 .social-container .col {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .nav-list li a:before {
     content: "\f14f";
     font: 400 21px/1 "Material Design Icons";
-    color: #4d6de6;
+    color: #A377C4;
     display: inline-block;
     vertical-align: baseline;
     margin-left: -28px;
