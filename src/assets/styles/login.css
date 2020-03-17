@@ -4,7 +4,7 @@
 }
 
 .background-login {
-  background-color: #333;
+  background-image: linear-gradient(to bottom right, #A377C4, #BA0295, #ff00c8);
 }
 
 .login,
@@ -20,15 +20,23 @@
 }
 
 .login-heading {
-  font-weight: 300;
+  font-weight: bold;
+  font-size: 1.75rem;
   color: #fff;
 }
 
 .btn-login {
+  background-color: #BA0295;
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
   border-radius: 2rem;
+  transition: 0.5s ease-in-out;
+}
+
+.btn-login:hover {
+  background-color: #A377C4;
+  transition: 0.5s;
 }
 
 .form-label-group {
@@ -41,6 +49,17 @@
   padding: var(--input-padding-y) var(--input-padding-x);
   height: auto;
   border-radius: 2rem;
+}
+
+.bottom-text {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: 0.5s;
+}
+
+.bottom-text:hover {
+  color: #07f89c;
+  transition: 0.5s;
 }
 
 .form-label-group>label {

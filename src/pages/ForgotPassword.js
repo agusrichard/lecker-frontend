@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet'
 import { Spinner } from 'reactstrap'
 import axios from 'axios'
 
-import ForgotPasswordForm from '../components/ForgotPasswordForm'
-import ForgotPasswordSuccessForm from '../components/ForgotPasswordSuccessForm'
+import ForgotPasswordForm from '../components/auth/ForgotPasswordForm'
+import ForgotPasswordSuccessForm from '../components/auth/ForgotPasswordSuccessForm'
 import DismissableAlert from '../components/DismissableAlert'
 import '../assets/styles/forgotpassword.css'
 

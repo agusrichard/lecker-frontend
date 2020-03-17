@@ -3,7 +3,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 import CustomNavbar from '../components/NavBar'
-import ChangeProfileForm from '../components/ChangeProfileForm'
+import ChangeProfileForm from '../components/auth/ChangeProfileForm'
 import Footer from '../components/Footer'
 import '../assets/styles/create-restaurant.css'
 

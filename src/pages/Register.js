@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { Spinner } from 'reactstrap'
 import axios from 'axios'
 
-import RegisterForm from '../components/RegisterForm'
+import RegisterForm from '../components/auth/RegisterForm'
 import DismissableAlert from '../components/DismissableAlert'
 import '../assets/styles/register.css'
 

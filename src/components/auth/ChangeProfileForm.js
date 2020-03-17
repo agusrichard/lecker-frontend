@@ -1,5 +1,5 @@
 import React from 'react'
-import '../assets/styles/create-restaurant.css'
+import '../../assets/styles/create-restaurant.css'
 
 
 function ChangeProfileForm(props) {

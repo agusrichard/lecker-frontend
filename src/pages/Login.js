@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-import LoginForm from '../components/LoginForm'
+import LoginForm from '../components/auth/LoginForm'
 import DismissableAlert from '../components/DismissableAlert'
 import '../assets/styles/login.css'
 

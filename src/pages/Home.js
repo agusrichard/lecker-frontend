@@ -3,7 +3,6 @@ import Cookies from 'js-cookie'
 import Slide from 'react-reveal/Slide';
 import CustomNavbar from '../components/NavBar'
 import Footer from '../components/Footer'
-import CustomCarousel from '../components/Carousel'
 
 import '../assets/styles/home.css'
 
