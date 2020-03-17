@@ -1,7 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+
 .home {
   width: 100%;
   height: 100vh;
   background-image: url(../images/home-background.jpg);
   background-position: center bottom;
   background-size: cover;
+}
+
+.home-card {
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 0;
+  transition: 0.5s;
+  font-size: 2rem
+}
+
+.home-card:nth-child(1) {
+  background-color: rgba(196, 125, 119, 0.5);
+}
+
+.home-card:nth-child(2) {
+  background-color: rgba(119, 191, 196, 0.5);
+}
+
+.home-card:hover {
+  padding: 3.5rem;
+  font-size: 2.5rem;
+  transition: 0.2s;
+}
+
+.home-text {
+  font-family: 'Permanent Marker', cursive;
+  color: #FFFFFF;
 }

@@ -37,7 +37,16 @@ class Home extends React.Component {
     return(
       <div>
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={this.logout}/>
-        <section className="home"></section>
+        <section className="home">
+          <div className="row h-100 justify-content-center align-items-center">
+            <div className="home-card">
+              <h1 className="home-text text-center">Welcome to Lecker</h1>
+              <p className="home-text text-center">
+                This is the app where you will satisfy your appetite.
+              </p>
+            </div>
+          </div>
+        </section>
         <div className="container">
           <div class="row d-flex justify-content-center">
             <div class="col-md-6">

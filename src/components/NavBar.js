@@ -22,13 +22,13 @@ const CustomNavbar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar expand="md" className="fixed-top nav" >
+    <Navbar expand="md" className="fixed-top nav navbar-bg" >
       <Container>
         <Link to="/"  className="navbar-brand d-flex align-items-center">
           <img src={ BrandLogo } width="75" height="75" className="mr-2" alt="" />
           <span className="navbar-brand-text">LECKER</span>
         </Link>
-        <NavbarToggler onClick={toggle} />
+        <NavbarToggler onClick={toggle} className="custom-toggler" />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
@@ -42,7 +42,7 @@ const CustomNavbar = (props) => {
             </NavItem>
           </Nav>
           <Nav navbar>
-            <NavItem>
+            <NavItem className="nav-item-top">
               <Link to="/auth/login" className="btn-login">
                 <span className="login-text">LOGIN</span>
               </Link>

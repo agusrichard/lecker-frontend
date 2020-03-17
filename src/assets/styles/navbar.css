@@ -5,14 +5,10 @@
 .navbar-brand-text {
   font-weight: bold;
   font-size: 2rem;
-  background: -webkit-linear-gradient(#5D207C  , #993EBC);
+  background: -webkit-linear-gradient(#5D207C  , #993ebc);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.navbar-bg {
-  background-color: #BC8EC8;
 }
 
 .navbar-brand {
@@ -20,12 +16,16 @@
 }
 
 .navbar-cart-icon {
-  color: #fff
+  color: #fff;
+}
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(228, 11, 105, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .link-text {
   font-size: 1.2rem;
-  color: #E40B69;
+  color: #e40b69;
   font-weight: bold;
   transition: 0.25s;
 }
@@ -37,9 +37,8 @@
 
 .btn-login {
   color: #FFFFFF;
-  background-color: #A677C4;
+  background-color: rgb(76, 56, 87);
   font-weight: bold;
-  /* padding: 0; */
   transition: 0.25s;
 }
 
@@ -48,4 +47,15 @@
   background-color: #BA0295;
   transition: 0.25s;
   text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-item-top {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .navbar-bg {
+    background-color: #BC8EC8;
+  }
 }
