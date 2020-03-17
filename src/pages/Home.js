@@ -39,12 +39,7 @@ class Home extends React.Component {
         <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={this.logout}/>
         <div className="container">
           <h1 className="text-center">Welcome</h1>
-          <Jumbotron fluid>
-            <Container fluid>
-              <h1 className="display-3 text-center">Lecker</h1>
-              <p className="lead text-center">Food Delivery App to satisfy your hunger and appetite.</p>
-            </Container>
-          </Jumbotron>
+          <section className="home"></section>
           <div class="row d-flex justify-content-center">
             <div class="col-md-6">
               <CustomCarousel />
