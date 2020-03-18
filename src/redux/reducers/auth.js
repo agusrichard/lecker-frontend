@@ -1,5 +1,6 @@
 import { 
-  USER_LOGIN,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
   CHECK_LOGIN_TOKEN,
   USER_LOGOUT
 } from '../actions/types'
@@ -9,17 +10,23 @@ const initialState = {
   userData: {},
   loginToken: '',
   isUserAuthenticated: false,
-  isLoggedIn: false
+  isLoggedIn: false,
+  isLoading: false
 }
 
 export default function authReducer(state=initialState, action) {
   switch (action.type) {
-    case USER_LOGIN: return {
+    case USER_LOGIN_REQUEST: return {
       ...state,
-      userData: action.payload.userData,
-      loginToken: action.payload.loginToken,
-      isUserAuthenticated: true,
+      isLoading: !state.isLoading,
       isLoggedIn: !state.isLoggedIn
+    }
+
+    case USER_LOGIN_SUCCESS: return {
+      ...state,
+      isLoading: !state.isLoading,
+      loginToken: action.payload,
+      isUserAuthenticated: !state.isUserAuthenticated
     }
 
     case USER_LOGOUT: 

@@ -1,6 +1,7 @@
 import React from 'react'
 import Cookies from 'js-cookie'
 import Slide from 'react-reveal/Slide';
+import { store } from '../redux/store'
 import CustomNavbar from '../components/CustomNavBar'
 import Footer from '../components/Footer'
 
@@ -8,34 +9,10 @@ import '../assets/styles/home.css'
 
 class Home extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoggedIn: false
-    }
-  }
-
-  logout = () => {
-    Cookies.remove('token')
-    this.setState({ isLoggedIn: false })
-    this.props.history.push('/')
-  }
-
-  checklog = () => {
-    const token = Cookies.get('token')
-    if (token) {
-      this.setState({ isLoggedIn: true })
-    }
-  }
-
-  componentDidMount() {
-    this.checklog()
-  }
-
   render() {
     return(
       <div>
-        <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={this.logout}/>
+        <CustomNavbar />
         <section className="home">
           <div className="row h-100 justify-content-center align-items-center">
             <Slide left>

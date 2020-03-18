@@ -2,13 +2,13 @@ import axios from 'axios'
 
 import { 
   CHECK_LOGIN_TOKEN,
-  USER_LOGIN,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
   USER_LOGOUT
 } from './types'
 
 
 export const checkLoginToken = loginToken => dispatch => {
-  console.log(loginToken)
   axios.post(process.env.REACT_APP_BASE_URL + '/auth/check-token', { loginToken })
     .then(res => {
       dispatch({
@@ -19,20 +19,14 @@ export const checkLoginToken = loginToken => dispatch => {
 }
 
 export const userLogin = userData => dispatch => {
-  console.log(userData)
+  dispatch({ type: USER_LOGIN_REQUEST })
   axios.post(process.env.REACT_APP_BASE_URL + '/auth/login', userData)
-    .then(res => {
-      const loginToken = res.data.data.token
-      const config = { headers: { Authorization: `Bearer ${loginToken}` } };
-      axios.get(process.env.REACT_APP_BASE_URL + '/users/profile', config)
-        .then(res => {
-          console.log(res)
-          dispatch({
-            type: USER_LOGIN,
-            payload: { loginToken: loginToken, userData: res.data.data.user }
-          })
-        })
-    })
+   .then(res => {
+     dispatch({
+       type: USER_LOGIN_SUCCESS,
+       payload: res.data.data.token
+     })
+   })
     .catch(err => console.log(err))
 }
 

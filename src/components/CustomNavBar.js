@@ -18,6 +18,7 @@ import '../assets/styles/navbar.css'
 
 
 const CustomNavbar = (props) => {
+  console.log('customNavbar')
   const [isOpen, setIsOpen] = useState(false);
   let isLoggedIn = store.getState().auth.isLoggedIn
 
