@@ -72,11 +72,11 @@ class ForgotPasswordSuccess extends React.Component {
                               context="warning" 
                               dismiss={this.dismiss}/> 
             : null }
-          <h3 className="register-heading">Reset Password
+          <h3 className="register-heading mb-5">Reset Password
             <span className="ml-3">
               { this.state.isLoading ? <Spinner type="grow" color="info" className="mx-auto"/> : null }
             </span>
-          </h3><hr className="hr-separator"/>
+          </h3>
           <ForgotPasswordForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         </div>
       )

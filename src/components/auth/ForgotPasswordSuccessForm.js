@@ -20,7 +20,7 @@ function ForgotPasswordSuccessForm(props) {
         <label htmlFor="inputConfirmPassword">Confirm Password</label>
       </div>
 
-      <button className="btn btn-lg btn-primary btn-block btn-forgotpassword text-uppercase font-weight-bold mb-2 mt-5" 
+      <button className="btn-block btn-forgotpassword text-uppercase font-weight-bold mb-2 mt-5" 
         type="submit" onClick={props.handleSubmit}>submit</button>
     </form>
   )
