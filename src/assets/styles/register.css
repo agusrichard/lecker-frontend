@@ -5,13 +5,13 @@
 
 .hr-separator {
   height: 2px;
-  color: #FF7A2B;
-  background-color: #FF7A2B;
+  color: #dcf807;
+  background-color: #dcf807;
   border: none;
 }
 
 .background-register {
-  background-color: #333;
+  background-image: linear-gradient(to bottom right, #C930CF, #b21fdf, #6a17d8);
 }
 
 .register,
@@ -27,15 +27,24 @@
 }
 
 .register-heading {
-  font-weight: 300;
+  font-weight: bold;
+  font-size: 1.75rem;
   color: #fff;
 }
 
 .btn-register {
+  color: #fff;
+  background-color: #BA0295;
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
   border-radius: 2rem;
+  transition: 0.2s ease-in-out;
+}
+
+.btn-register:hover {
+  background-color: #A377C4;
+  transition: 0.5s;
 }
 
 .form-label-group {

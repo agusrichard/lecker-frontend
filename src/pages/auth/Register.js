@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet'
 import { Spinner } from 'reactstrap'
 import axios from 'axios'
 
-import RegisterForm from '../components/auth/RegisterForm'
-import DismissableAlert from '../components/DismissableAlert'
-import '../assets/styles/register.css'
+import RegisterForm from '../../components/auth/RegisterForm'
+import DismissableAlert from '../../components/DismissableAlert'
+import '../../assets/styles/register.css'
 
 class Register extends React.Component {
 
@@ -98,11 +98,11 @@ class Register extends React.Component {
                               context="warning" 
                               dismiss={this.dismiss}/> 
             : null }
-          <h3 className="register-heading mb-2">Register Here
+          <h3 className="register-heading mb-5">Register Here
             <span className="ml-3">
               { this.state.isLoading ? <Spinner type="grow" color="info" className="mx-auto"/> : null }
             </span>
-          </h3><hr className="hr-separator"/>
+          </h3>
           <RegisterForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         </div>
       )

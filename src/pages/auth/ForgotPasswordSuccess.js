@@ -4,7 +4,7 @@ import { Spinner } from 'reactstrap'
 import axios from 'axios'
 
 import ForgotPasswordForm from '../components/ForgotPasswordForm'
-import DismissableAlert from '../components/DismissableAlert'
+import DismissableAlert from '../../components/DismissableAlert'
 import '../assets/styles/forgotpassword.css'
 
 class ForgotPasswordSuccess extends React.Component {

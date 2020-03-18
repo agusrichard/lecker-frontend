@@ -44,11 +44,11 @@ function RegisterForm(props) {
         <label htmlFor="inputConfirmPassword">Confirm Password</label>
       </div>
 
-      <button className="btn btn-lg btn-primary btn-block btn-register text-uppercase font-weight-bold mb-2 mt-5" 
+      <button className="btn-block btn-register text-uppercase font-weight-bold mb-2 mt-5" 
               type="submit" onClick={props.handleSubmit}>register</button>
       <div className="mx-auto mt-3">
         <div className="row">
-          <Link className="col text-left text-muted text-decoration-none" to="/auth/login">Already have account? Sign In</Link>
+          <Link className="col text-left text-decoration-none bottom-text" to="/auth/login">Already have account? Sign In</Link>
         </div>
       </div>
     </form>

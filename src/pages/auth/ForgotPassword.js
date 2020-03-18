@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet'
 import { Spinner } from 'reactstrap'
 import axios from 'axios'
 
-import ForgotPasswordForm from '../components/auth/ForgotPasswordForm'
-import ForgotPasswordSuccessForm from '../components/auth/ForgotPasswordSuccessForm'
-import DismissableAlert from '../components/DismissableAlert'
-import '../assets/styles/forgotpassword.css'
+import ForgotPasswordForm from '../../components/auth/ForgotPasswordForm'
+import ForgotPasswordSuccessForm from '../../components/auth/ForgotPasswordSuccessForm'
+import DismissableAlert from '../../components/DismissableAlert'
+import '../../assets/styles/forgotpassword.css'
 
 class ForgotPassword extends React.Component {
   constructor(props) {

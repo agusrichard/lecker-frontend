@@ -6,9 +6,9 @@ import {
   Route
 } from 'react-router-dom'
 import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
-import ForgotPassword from './pages/ForgotPassword'
+import Login from './pages/auth/Login'
+import Register from './pages/auth/Register'
+import ForgotPassword from './pages/auth/ForgotPassword'
 import ItemsPage from './pages/ItemsPage'
 import RestaurantsPage from './pages/RestaurantsPage'
 import CreateRestaurant from './pages/CreateRestaurant'
