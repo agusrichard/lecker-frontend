@@ -1,14 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 import { Helmet } from 'react-helmet'
+import { Container } from 'reactstrap'
 import { connect } from 'react-redux'
 import Zoom from 'react-reveal/Zoom';
 import Slide from 'react-reveal/Slide'
+import { userLogout, getUserProfile } from '../../redux/actions/auth'
 import CustomNavbar from '../../components/CustomNavBar'
 import CustomModal from '../../components/CustomModal'
 import Footer from '../../components/Footer'
-import { Container } from 'reactstrap'
-import { Link } from 'react-router-dom'
 import Image from '../../assets/images/profile-picture-placeholder.png'
 import '../../assets/styles/userprofile.css'
 
@@ -16,7 +16,10 @@ class UserProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      topupAmount: ''
+      topupAmount: '',
+      email: '',
+      fullName: '',
+      profilePicture: '',
     }
   }
 
@@ -24,6 +27,10 @@ class UserProfile extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  handleFile = (event) => {
+    this.setState({ profilePicture: event.target.files[0] })
   }
 
   topup = async () => {
@@ -34,7 +41,7 @@ class UserProfile extends React.Component {
       const response = await axios.patch(process.env.REACT_APP_BASE_URL + '/users/topup', { amount } ,config)
       console.log(response)
       if (response.status === 200) {
-        alert('Top up success')
+        this.props.getUserProfile(token)
         this.props.history.push('/users/profile')
       }
     } catch(err) {
@@ -46,18 +53,46 @@ class UserProfile extends React.Component {
   deleteUser = async () => {
     try {
       let token = this.props.loginToken
-      token = token.slice(1, token.length-1)
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const response = await axios.delete(process.env.REACT_APP_BASE_URL + '/users/profile', config)
       console.log(response)
       if (response.status === 200) {
-        this.logout()
+        this.props.userLogout()
         this.props.history.push('/auth/login')
       }
     } catch(err) {
       console.log(err)
       alert('Failed to delete account')
     }
+  }
+
+  updateUser = async (event) => {
+    console.log('updateUser')
+    event.preventDefault()
+    try {
+      let token = this.props.loginToken
+      const config = { headers: { Authorization: `Bearer ${token}` } }
+      let formData = new FormData()
+      formData.append('profilePicture', this.state.profilePicture)
+      formData.append('email', this.state.email || this.props.profile.email)
+      formData.append('fullName', this.state.fullName || this.props.profile.full_name)
+
+      const response = await axios.patch(process.env.REACT_APP_BASE_URL + '/users/change-profile', formData, config)
+      console.log(response)
+      if (response.status === 200) {
+        this.props.getUserProfile(token)
+        this.props.history.push('/users/profile')
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to change profile')
+    }
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount')
+    let token = this.props.loginToken
+    this.props.getUserProfile(token)
   }
 
   render() {
@@ -96,10 +131,9 @@ class UserProfile extends React.Component {
                   <h3 className="text-center profile-card-text-title">Top Up Balance</h3>
                   <p className="text-center profile-card-text">Want to top up so you can buy anything you want? It's easy... Just click below</p>
                   <CustomModal 
-                      buttonLabel="Topup"
-                      deleteUser={this.topup}
+                      buttonLabel="Top Up"
                       message="Please provide the topup amount:"
-                      btnMessage="Topup" 
+                      btnMessage="Top Up" 
                       handleChange={this.handleChange} 
                       topup={this.topup}/>
                 </div>
@@ -108,7 +142,13 @@ class UserProfile extends React.Component {
                 <div className="col-md-3 profile-card p-2">
                   <h3 className="text-center profile-card-text-title">Change Profile</h3>
                   <p className="text-center profile-card-text">You are not the one who you were before. Good... You can have a new you here.</p>
-                  <button className="mt-5 btn-block profile-card-button">Change</button>
+                  <CustomModal 
+                      buttonLabel="Change Profile"
+                      message="Please Fill The Fields:"
+                      btnMessage="Change" 
+                      handleChange={this.handleChange} 
+                      handleFile={this.handleFile}
+                      updateUser={this.updateUser}/>
                 </div>
               </Slide>
               <Slide right>
@@ -137,5 +177,7 @@ const mapStateToProps = state => ({
   loginToken: state.auth.loginToken
 })
 
+const mapDispatchToProps = { userLogout, getUserProfile }
 
-export default connect(mapStateToProps)(UserProfile)
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)

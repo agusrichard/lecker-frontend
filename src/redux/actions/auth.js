@@ -28,7 +28,7 @@ export const userLogin = userData => dispatch => {
         type: USER_LOGIN_SUCCESS,
         payload: loginToken
       })
-      const config = { headers: { Authorization: `Bearer ${loginToken}` } };
+      const config = { headers: { Authorization: `Bearer ${loginToken}` } }
       axios.get(process.env.REACT_APP_BASE_URL + '/users/profile', config)
         .then(res => {
           dispatch({
@@ -44,4 +44,17 @@ export const userLogout = () => dispatch => {
   dispatch({
     type: USER_LOGOUT
   })
+}
+
+export const getUserProfile = loginToken => dispatch => {
+  console.log('getUserProfile')
+  const config = { headers: { Authorization: `Bearer ${loginToken}` } }
+  axios.get(process.env.REACT_APP_BASE_URL + '/users/profile', config)
+    .then(res => {
+      console.log(res)
+      dispatch({
+        type: GET_USER_PROFILE,
+        payload: res.data.data.user
+      })
+    })
 }

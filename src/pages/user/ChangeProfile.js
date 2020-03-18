@@ -102,11 +102,10 @@ render() {
     <CustomNavbar isLoggedIn={ this.state.isLoggedIn } logout={this.logout}/>
     <div class="signup-form">
       <ChangeProfileForm 
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                    handleFile={this.handleFile}
-                    profile={this.state.profile}
-                />
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        handleFile={this.handleFile}
+        profile={this.state.profile} />
     </div>
     <Footer />
   </div>
