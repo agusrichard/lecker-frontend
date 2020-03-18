@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Cookies from 'js-cookie'
 import { connect } from 'react-redux'
 import {
   Container,
@@ -20,7 +19,7 @@ import '../assets/styles/navbar.css'
 const CustomNavbar = (props) => {
   console.log('customNavbar')
   const [isOpen, setIsOpen] = useState(false);
-  let isLoggedIn = store.getState().auth.isLoggedIn
+  const profilePicture = props.userData.profile_picture
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -46,12 +45,12 @@ const CustomNavbar = (props) => {
           </Nav>
           <Nav navbar>
             <NavItem className="nav-item-top">
-              { isLoggedIn ? 
+              { props.isLoggedIn ? 
                 <>
                   <Link to="/cart">
                     <img src={ CartIcon } width="40" height="40" className="d-inline-block align-center mr-4" alt="" />
                   </Link>
-                  <Dropdown context="info" logout={props.logout}/>
+                  <Dropdown context="info" logout={props.logout} profilePicture={profilePicture}/>
                 </> :
                 <Link to="/auth/login" className="btn-login">
                   <span className="login-text">LOGIN</span>
@@ -65,4 +64,9 @@ const CustomNavbar = (props) => {
   );
 }
 
-export default CustomNavbar;
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  userData: state.auth.userData
+})
+
+export default connect(mapStateToProps)(CustomNavbar)

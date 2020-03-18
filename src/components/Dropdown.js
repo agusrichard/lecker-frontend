@@ -22,7 +22,7 @@ const Dropdown = (props) => {
   return (
     <ButtonDropdown isOpen={dropdownOpen} toggle={toggle} >
       <DropdownToggle color="">
-        <img src={ Image } width="40" height="40" className="d-inline-block align-center mr-4 rounded-circle"/>
+        <img src={ props.profilePicture ? process.env.REACT_APP_BASE_URL+ '/' + props.profilePicture : Image } width="40" height="40" className="d-inline-block align-center mr-4 rounded-circle"/>
       </DropdownToggle>
       <DropdownMenu>
         <DropdownItem>
