@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { connect } from 'react-redux'
+import { userLogout } from '../redux/actions/auth'
 
 const Dropdown = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
+  const [isRedirect, setRedirect] = useState(false)
+
+  const renderRedirect = () => {
+    if (isRedirect) {
+      props.userLogout()
+      return <Redirect to="/" />
+    }
+  }
 
   const toggle = () => setOpen(!dropdownOpen);
 
@@ -17,10 +27,11 @@ const Dropdown = (props) => {
             <Link to="/users/profile" style={{ textDecoration: 'none' }}>Profile</Link>
         </DropdownItem>
         <DropdownItem divider />
-        <DropdownItem onClick={props.logout}>Logout</DropdownItem>
+        { renderRedirect() }
+        <DropdownItem onClick={() => setRedirect(true)}>Logout</DropdownItem>
       </DropdownMenu>
     </ButtonDropdown>
   );
 }
 
-export default Dropdown;
+export default connect(null, { userLogout })(Dropdown);

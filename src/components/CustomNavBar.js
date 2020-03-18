@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie'
 import { connect } from 'react-redux'
 import {
@@ -10,6 +10,7 @@ import {
   NavItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
+import { store } from '../redux/store'
 import BrandLogo from '../assets/images/logo.png'
 import CartIcon from '../assets/images/cart-icon.svg'
 import Dropdown from './Dropdown'
@@ -17,8 +18,8 @@ import '../assets/styles/navbar.css'
 
 
 const CustomNavbar = (props) => {
-  console.log(window.pageYOffset)
   const [isOpen, setIsOpen] = useState(false);
+  let isLoggedIn = store.getState().auth.isLoggedIn
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -44,9 +45,17 @@ const CustomNavbar = (props) => {
           </Nav>
           <Nav navbar>
             <NavItem className="nav-item-top">
-              <Link to="/auth/login" className="btn-login">
-                <span className="login-text">LOGIN</span>
-              </Link>
+              { isLoggedIn ? 
+                <>
+                  <Link to="/cart">
+                    <img src={ CartIcon } width="40" height="40" className="d-inline-block align-top mr-4" alt="" />
+                  </Link>
+                  <Dropdown context="info" logout={props.logout}/>
+                </> :
+                <Link to="/auth/login" className="btn-login">
+                  <span className="login-text">LOGIN</span>
+                </Link>
+              }
             </NavItem> 
           </Nav>
         </Collapse>
