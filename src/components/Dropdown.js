@@ -3,6 +3,8 @@ import { Link, Redirect } from 'react-router-dom'
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { connect } from 'react-redux'
 import { userLogout } from '../redux/actions/auth'
+import Image from '../assets/images/profile-picture-placeholder.png'
+
 
 const Dropdown = (props) => {
   const [dropdownOpen, setOpen] = useState(false);
@@ -18,9 +20,9 @@ const Dropdown = (props) => {
   const toggle = () => setOpen(!dropdownOpen);
 
   return (
-    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle caret color={props.context}>
-        Profile
+    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle} >
+      <DropdownToggle color="">
+        <img src={ Image } width="40" height="40" className="d-inline-block align-center mr-4 rounded-circle"/>
       </DropdownToggle>
       <DropdownMenu>
         <DropdownItem>

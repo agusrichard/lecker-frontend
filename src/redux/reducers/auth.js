@@ -23,10 +23,10 @@ export default function authReducer(state=initialState, action) {
     }
 
     case USER_LOGOUT: 
-      localStorage.removeItem('persist:root');
       return {
       ...state,
-      userData: [],
+      userData: {},
+      loginToken: '',
       isUserAuthenticated: false,
       isLoggedIn: false
     }
