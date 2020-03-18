@@ -1,7 +1,5 @@
 import React from 'react'
-import Cookies from 'js-cookie'
 import Slide from 'react-reveal/Slide';
-import { store } from '../redux/store'
 import CustomNavbar from '../components/CustomNavBar'
 import Footer from '../components/Footer'
 

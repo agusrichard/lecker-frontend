@@ -2,10 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-import CustomNavbar from '../components/CustomNavBar'
-import ChangeProfileForm from '../components/auth/ChangeProfileForm'
-import Footer from '../components/Footer'
-import '../assets/styles/create-restaurant.css'
+import CustomNavbar from '../../components/CustomNavBar'
+import ChangeProfileForm from '../../components/auth/ChangeProfileForm'
+import Footer from '../../components/Footer'
+import '../../assets/styles/create-restaurant.css'
 
 class ChangeProfile extends React.Component {
   constructor(props) {

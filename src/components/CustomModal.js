@@ -3,11 +3,13 @@ import {
   Button, Modal, ModalHeader, 
   ModalBody, ModalFooter, Form, 
   FormGroup, Label, Input } from 'reactstrap';
+import '../assets/styles/userprofile.css'
 
 
 const CustomModal = (props) => {
   const {
     buttonLabel,
+    btnClass,
     className,
     deleteUser,
     message,
@@ -25,7 +27,7 @@ const CustomModal = (props) => {
   if (topup) {
     return (
       <span>
-        <Button color="success" onClick={toggle} className="ml-4 px-4 py-2">{buttonLabel}</Button>
+        <Button color="success" onClick={toggle} className="btn-block profile-card-button">{buttonLabel}</Button>
         <Modal isOpen={modal} toggle={toggle} className={className}>
           <ModalHeader toggle={toggle} close={closeBtn}>{buttonLabel}</ModalHeader>
           <ModalBody>
@@ -46,7 +48,7 @@ const CustomModal = (props) => {
   } else {
     return (
       <span>
-        <Button color="danger" onClick={toggle} className="px-4 py-2">{buttonLabel}</Button>
+        <Button color="danger" onClick={toggle} className="btn-block profile-card-button">{buttonLabel}</Button>
         <Modal isOpen={modal} toggle={toggle} className={className}>
           <ModalHeader toggle={toggle} close={closeBtn}>{buttonLabel}</ModalHeader>
           <ModalBody>

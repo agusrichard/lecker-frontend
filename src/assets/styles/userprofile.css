@@ -1,38 +1,78 @@
-/* body{
-    background: ;
-} */
-.portfolio{
-    padding:6%;
-    text-align:center;
+.user-profile {
+  width: 100%;
+  height: 35vh;
+  background-image: url('../images/profile-background.jpg');
+  background-position: center left;
+  background-size: cover;
+  z-index: 0;
 }
-.heading{
-    background: #fff;
-    padding: 1%;
-    text-align: left;
-    box-shadow: 0px 0px 4px 0px #545b62;
+
+.page-bg {
+  background-color: #BC8EC8;
 }
-.heading img{
-    width: 10%;
+
+.profile-box {
+  margin-left: 100px;
+  margin-top: 1.5rem;
 }
-.bio-info{
-    padding: 5%;
-    background:#fff;
-    box-shadow: 0px 0px 4px 0px #b0b3b7;
+
+.profile-text {
+  color: #fff;
 }
-.name{
-    font-family: 'Charmonman', cursive;
-    font-weight:600;
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  margin-top: -15vh;
+  margin-left: 100px;
+  box-shadow: 2px 2px 2px 2px rgba(196, 125, 119, 0.5);
 }
-.bio-image{
-    text-align:center;
+
+.profile-button-box {
+  width: 100%;
+  height: 75vh;
+  background-image: url('../images/profile-background-2.jpg');
+  background-position: center;
+  background-size: cover;
+  z-index: 0;
 }
-.bio-image img{
-    border-radius:50%;
+
+.profile-card {
+  border: 2px solid #9e26d9;
+  border-radius: 5px;
 }
-.bio-content{
-    text-align:left;
+
+.profile-card-text-title {
+  color: #991468;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
 }
-.bio-content p{
-    font-weight:600;
-    font-size:30px;
+
+.profile-card-text {
+  color: #e40b69;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.profile-card-button {
+  margin-top: 2.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-text-box {
+    margin-top: 2rem;
+  }
+
+  .user-profile {
+    margin-top: 5rem;
+  }
+
+  .profile-button-box {
+    height: 100%;
+  }
+
+  .profile-card {
+    margin: 1.5rem 1rem;
+  }
 }
