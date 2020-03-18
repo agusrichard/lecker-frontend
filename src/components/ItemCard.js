@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../assets/styles/itemcard.css'
-import Image from '../assets/images/login-image.jpg'
+// import Image from '../assets/images/login-image.jpg'
 import { Button } from 'reactstrap'
 
 function ItemCard(props) {

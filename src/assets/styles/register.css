@@ -20,7 +20,7 @@
 }
 
 .bg-image-register {
-  background-image: url('../images/register-image.jpg');
+  background-image: url('../images/auth/register-image.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.55;
