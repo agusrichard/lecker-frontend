@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { 
   BrowserRouter,
   Switch,
@@ -10,7 +9,6 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import UserProfile from './pages/user/UserProfile'
-import ChangeProfile from './pages/user/ChangeProfile'
 import ItemsPage from './pages/ItemsPage'
 import RestaurantsPage from './pages/RestaurantsPage'
 import CreateRestaurant from './pages/CreateRestaurant'
@@ -29,7 +27,6 @@ class App extends React.Component {
           <Route path="/auth/register" component={ Register } />
           <Route path="/auth/forgot-password" component={ ForgotPassword } />
           <Route path="/users/profile" component={ UserProfile } />
-          <Route path="/users/change-profile" component={ ChangeProfile } />
           <Route path="/restaurants/:restaurantId/update" component={ UpdateRestaurant } />
           <Route path="/restaurants/:restaurantId" component={ RestaurantDetail } />
           <Route path="/restaurants" component={ RestaurantsPage } />
