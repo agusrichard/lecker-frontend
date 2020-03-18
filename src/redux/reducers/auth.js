@@ -2,7 +2,8 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   CHECK_LOGIN_TOKEN,
-  USER_LOGOUT
+  USER_LOGOUT,
+  GET_USER_PROFILE
 } from '../actions/types'
 
 
@@ -36,6 +37,11 @@ export default function authReducer(state=initialState, action) {
       loginToken: '',
       isUserAuthenticated: false,
       isLoggedIn: false
+    }
+
+    case GET_USER_PROFILE: return {
+      ...state,
+      userData: action.payload
     }
 
     case CHECK_LOGIN_TOKEN: return {
