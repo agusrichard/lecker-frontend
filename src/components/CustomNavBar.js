@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie'
+import { connect } from 'react-redux'
 import {
   Container,
   Collapse,
@@ -11,7 +12,7 @@ import {
 import { Link } from 'react-router-dom'
 import BrandLogo from '../assets/images/logo.png'
 import CartIcon from '../assets/images/cart-icon.svg'
-import Dropdown from '../components/Dropdown'
+import Dropdown from './Dropdown'
 import '../assets/styles/navbar.css'
 
 

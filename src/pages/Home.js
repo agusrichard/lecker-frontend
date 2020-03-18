@@ -1,7 +1,7 @@
 import React from 'react'
 import Cookies from 'js-cookie'
 import Slide from 'react-reveal/Slide';
-import CustomNavbar from '../components/NavBar'
+import CustomNavbar from '../components/CustomNavBar'
 import Footer from '../components/Footer'
 
 import '../assets/styles/home.css'
@@ -49,8 +49,8 @@ class Home extends React.Component {
           </div>
         </section>
         <div className="container">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-6">
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-6">
             </div>
           </div>
           <div className="mt-5 mb-5"></div>

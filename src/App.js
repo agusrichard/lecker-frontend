@@ -26,7 +26,7 @@ class App extends React.Component {
         <Switch>  
           <Route exact path="/" component={ Home } />
           <Route path="/auth/login" component={ Login } />
-          <Route path="/auth/register" component={ Register }/>
+          <Route path="/auth/register" component={ Register } />
           <Route path="/auth/forgot-password" component={ ForgotPassword } />
           <Route path="/users/profile" component={ UserProfile } />
           <Route path="/users/change-profile" component={ ChangeProfile } />

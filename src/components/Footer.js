@@ -48,16 +48,16 @@ function Footer(props) {
         </div>
         <div className="row no-gutters social-container">
           <Slide bottom>
-            <div className="col"><a className="social-inner" href="#"><span className="icon mdi mdi-facebook"></span><span>Facebook</span></a></div>
+            <div className="col"><a className="social-inner" href="https://www.facebook.com/"><span className="icon mdi mdi-facebook"></span><span>Facebook</span></a></div>
           </Slide>
           <Slide bottom>
-            <div className="col"><a className="social-inner" href="#"><span className="icon mdi mdi-instagram"></span><span>instagram</span></a></div>
+            <div className="col"><a className="social-inner" href="https://www.instagram.com/"><span className="icon mdi mdi-instagram"></span><span>instagram</span></a></div>
           </Slide>
           <Slide bottom>
-            <div className="col"><a className="social-inner" href="#"><span className="icon mdi mdi-twitter"></span><span>twitter</span></a></div>
+            <div className="col"><a className="social-inner" href="https://www.twitter.com/"><span className="icon mdi mdi-twitter"></span><span>twitter</span></a></div>
           </Slide>
           <Slide bottom>
-            <div className="col"><a className="social-inner" href="#"><span className="icon mdi mdi-youtube-play"></span><span>google</span></a></div>
+            <div className="col"><a className="social-inner" href="https://www.google.com/"><span className="icon mdi mdi-youtube-play"></span><span>google</span></a></div>
           </Slide>
         </div>
       </footer>

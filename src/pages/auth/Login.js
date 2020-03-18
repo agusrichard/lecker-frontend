@@ -1,8 +1,10 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { Helmet } from 'react-helmet'
+import { connect } from 'react-redux'
 
+import { userLogin } from '../../redux/actions/auth'
 import LoginForm from '../../components/auth/LoginForm'
 import DismissableAlert from '../../components/DismissableAlert'
 import '../../assets/styles/login.css'
@@ -36,7 +38,7 @@ class Login extends React.Component {
         const data = { username: this.state.username, password: this.state.password }
         const response = await axios.post(process.env.REACT_APP_BASE_URL + '/auth/login', data)
         if (response.status === 200) {
-          Cookies.set('token', JSON.stringify(response.data.data.token))
+          this.props.userLogin(data)
           this.props.history.push('/')
         } else {
           this.setState(prevState => {
@@ -99,4 +101,4 @@ class Login extends React.Component {
 }
 
 
-export default Login
+export default connect(null, { userLogin })(Login)

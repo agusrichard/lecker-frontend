@@ -3,7 +3,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { Helmet } from 'react-helmet'
 
-import CustomNavbar from '../components/NavBar'
+import CustomNavbar from '../components/CustomNavBar'
 import Footer from '../components/Footer'
 import CreateRestaurantForm from '../components/CreateRestaurantForm'
 import '../assets/styles/create-restaurant.css'

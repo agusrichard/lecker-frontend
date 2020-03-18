@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import axios from 'axios'
 
 import ItemCard from '../components/ItemCard'
-import CustomNavbar from '../components/NavBar'
+import CustomNavbar from '../components/CustomNavBar'
 import Footer from '../components/Footer'
 import Pagination from '../components/Pagination'
 
