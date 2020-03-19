@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
+import { Container } from 'reactstrap'
 import Slide from 'react-reveal/Slide'
 import Zoom from 'react-reveal/Zoom'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
+import RestaurantCard from '../../components/restaurant/RestaurantCard'
 import '../../assets/styles/restaurant.css'
 
 export default class Restaurants extends Component {
@@ -33,13 +35,58 @@ export default class Restaurants extends Component {
         </div>
         <div className="banner">
           <div className="row h-100 justify-content-center align-items-center">
-            <Zoom>
+            <Slide bottom>
               <div className="col-md-6">
                 <h3 className="banner-text pretty-text text-center">Live to fullest</h3>
               </div>
-            </Zoom>
+            </Slide>
           </div>
         </div>
+        <Container className="mt-5 mb-5">
+          <p className="text-center restaurant-list-begin-text">TRY &amp; DISCOVER</p>
+          <h3 className="text-center restaurant-list-main-text mb-2">Restaurants</h3>
+          <hr className="heading-hr mb-5" />
+          <div className="row d-flex justify-content-center restaurant-row">
+            <div className="col-md-5 mr-5">
+              <RestaurantCard />
+            </div>
+            <div className="col-md-5">
+              <RestaurantCard />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-center restaurant-row">
+            <div className="col-md-5 mr-5">
+              <RestaurantCard />
+            </div>
+            <div className="col-md-5">
+              <RestaurantCard />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-center restaurant-row">
+            <div className="col-md-5 mr-5">
+              <RestaurantCard />
+            </div>
+            <div className="col-md-5">
+              <RestaurantCard />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-center restaurant-row">
+            <div className="col-md-5 mr-5">
+              <RestaurantCard />
+            </div>
+            <div className="col-md-5">
+              <RestaurantCard />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-center restaurant-row">
+            <div className="col-md-5 mr-5">
+              <RestaurantCard />
+            </div>
+            <div className="col-md-5">
+              <RestaurantCard />
+            </div>
+          </div>
+        </Container>
         <Footer />
       </div>
     )
