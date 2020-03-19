@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import RestaurantImage from '../../assets/images/restaurant-image.jpg'
+import RestaurantImage from '../../assets/images/restaurant/restaurant-image.jpg'
 import '../../assets/styles/restaurant.css'
 
 export default function RestaurantCard(props) {

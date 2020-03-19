@@ -12,7 +12,7 @@ import UserProfile from './pages/user/UserProfile'
 import ItemsPage from './pages/ItemsPage'
 import Restaurants from './pages/restaurant/Restaurants'
 import CreateRestaurant from './pages/CreateRestaurant'
-import RestaurantDetail from './pages/RestaurantDetail'
+import RestaurantDetail from './pages/restaurant/RestaurantDetail'
 import UpdateRestaurant from './pages/UpdateRestaurant'
 import Cart from './pages/Cart'
 
