@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Helmet } from 'react-helmet'
 import { Container } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import Slide from 'react-reveal/Slide'
 import Zoom from 'react-reveal/Zoom'
 import CustomNavbar from '../../components/CustomNavBar'
@@ -28,7 +29,7 @@ export default class Restaurants extends Component {
             <Zoom>
               <div className="col-md-6">
                 <h3 className="banner-text text-center">Want your own restaurant?</h3>
-                <button className="custom-btn mx-auto">Here</button>
+                <Link className="custom-btn text-center mx-auto" to="/restaurants/create-restaurant">Here</Link>
               </div>
             </Zoom>
           </div>

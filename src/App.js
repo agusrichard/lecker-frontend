@@ -9,11 +9,11 @@ import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import UserProfile from './pages/user/UserProfile'
-import ItemsPage from './pages/ItemsPage'
 import Restaurants from './pages/restaurant/Restaurants'
-import CreateRestaurant from './pages/CreateRestaurant'
 import RestaurantDetail from './pages/restaurant/RestaurantDetail'
+import CreateRestaurant from './pages/restaurant/CreateRestaurant'
 import UpdateRestaurant from './pages/UpdateRestaurant'
+import ItemsPage from './pages/ItemsPage'
 import Cart from './pages/Cart'
 
 
@@ -27,10 +27,10 @@ class App extends React.Component {
           <Route path="/auth/register" component={ Register } />
           <Route path="/auth/forgot-password" component={ ForgotPassword } />
           <Route path="/users/profile" component={ UserProfile } />
+          <Route path="/restaurants/create-restaurant" component={ CreateRestaurant } />
           <Route path="/restaurants/:restaurantId/update" component={ UpdateRestaurant } />
           <Route path="/restaurants/:restaurantId" component={ RestaurantDetail } />
           <Route path="/restaurants" component={ Restaurants } />
-          <Route path="/create-restaurant" component={ CreateRestaurant } />
           <Route path="/items" component={ ItemsPage }/>
           <Route path="/cart" component={ Cart } />
         </Switch>

@@ -36,12 +36,15 @@
   border-radius: 10px;
   color: #fff;
   font-size: 1.5rem;
+  text-decoration: none;
   transition: 0.3s;
 }
 
 .custom-btn:hover {
   background-color: #BA0295;
   transition: 0.3s;
+  text-decoration: none;
+  color: #fff;
 }
 
 .banner {
@@ -139,6 +142,50 @@
   font-family: 'Gotu', sans-serif;
   color: #BC8EC8;
   font-size: 1.5rem;
+}
+
+.form-container {
+  width: 70vh;
+}
+
+.create-restaurant-form-label {
+  color: #BA0295;
+  font-size: 1.2rem;
+}
+
+.create-restaurant-form-input {
+  background-color: rgb(231, 198, 240);
+  color: #fff;
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  transition: 0.3s;
+}
+
+.create-restaurant-form-input:focus {
+  background-color: #BC8EC8;
+  transition: 0.3s;
+  border: 3px solid #BA0295;
+}
+
+.create-restaurant-form-btn {
+  background-color: #BC8EC8;
+  display: block;
+  width: 20vh;
+  margin: 2rem 0;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.create-restaurant-form-btn:hover {
+  background-color: #BA0295;
+  transition: 0.3s;
+  text-decoration: none;
+  color: #BC8EC8;
 }
 
 @media screen and (max-width: 768px) {

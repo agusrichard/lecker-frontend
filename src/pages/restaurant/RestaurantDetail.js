@@ -34,7 +34,7 @@ class RestaurantDetail extends React.Component {
 
   componentDidMount() {
     this.getRestaurantDetail()
-    if (this.props.userData.id === this.state.restaurantDetail.owner_id) {
+    if (parseInt(this.props.userData.id) === parseInt(this.state.restaurantDetail.owner_id)) {
       this.setState({ isOwner: true })
     }
   }
