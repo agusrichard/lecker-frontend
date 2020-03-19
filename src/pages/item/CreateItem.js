@@ -74,27 +74,27 @@ class CreateRestaurant extends React.Component {
           <h1 className="pretty-text text-center">New Menu</h1>
           <hr className="heading-hr mb-5" />
           <Form>
-          <FormGroup>
-            <Label for="name" className="create-restaurant-form-label">Menu Name</Label>
-            <input type="text" className="create-restaurant-form-input" name="name" id="name" placeholder="Name" onChange={this.handleChange}/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="category" className="create-restaurant-form-label">Menu Category</Label>
-            <input type="text" className="create-restaurant-form-input" name="category" id="category" placeholder="Category" onChange={this.handleChange}/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="price" className="create-restaurant-form-label">Price</Label>
-            <input type="number" className="create-restaurant-form-input" name="price" id="price" placeholder="Price" onChange={this.handleChange}/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="description" className="create-restaurant-form-label">Description</Label>
-            <textarea className="create-restaurant-form-input" name="description" id="description" onChange={this.handleChange}/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="itemImage" className="create-restaurant-form-label">Menu Image</Label>
-            <CustomInput type="file" id="itemImage" name="itemImage" onChange={this.handleFile} />
-          </FormGroup>
-          <button className="btn-block create-restaurant-form-btn" onClick={this.handleSubmit}>Submit</button>
+            <FormGroup>
+              <Label for="name" className="create-restaurant-form-label">Menu Name</Label>
+              <input type="text" className="create-restaurant-form-input" name="name" id="name" placeholder="Name" onChange={this.handleChange}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="category" className="create-restaurant-form-label">Menu Category</Label>
+              <input type="text" className="create-restaurant-form-input" name="category" id="category" placeholder="Category" onChange={this.handleChange}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="price" className="create-restaurant-form-label">Price</Label>
+              <input type="number" className="create-restaurant-form-input" name="price" id="price" placeholder="Price" onChange={this.handleChange}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="description" className="create-restaurant-form-label">Description</Label>
+              <textarea className="create-restaurant-form-input" name="description" id="description" onChange={this.handleChange}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="itemImage" className="create-restaurant-form-label">Menu Image</Label>
+              <CustomInput type="file" id="itemImage" name="itemImage" onChange={this.handleFile} />
+            </FormGroup>
+            <button className="btn-block create-restaurant-form-btn" onClick={this.handleSubmit}>Submit</button>
           </Form>
         </div>
         <Footer />

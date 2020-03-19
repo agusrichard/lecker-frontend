@@ -47,7 +47,7 @@ class CreateRestaurant extends React.Component {
       const response = await axios.post(process.env.REACT_APP_BASE_URL + '/restaurants', formData, config)
       console.log(response)
       if (response.status === 200) {
-          this.props.history.push('/restaurants')
+          this.props.history.push('/profile')
       }
     } catch(err) {
       console.log(err)
@@ -67,23 +67,23 @@ class CreateRestaurant extends React.Component {
           <h1 className="pretty-text text-center">Create Restaurant</h1>
           <hr className="heading-hr mb-5" />
           <Form>
-          <FormGroup>
-            <Label for="restaurantName" className="create-restaurant-form-label">Restaurant Name</Label>
-            <input type="text" className="create-restaurant-form-input" name="name" id="restaurantName" placeholder="Restaurant Name" onChange={this.handleChange}/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="location" className="create-restaurant-form-label">Location</Label>
-            <input type="text" className="create-restaurant-form-input" name="location" id="location" placeholder="Location" onChange={this.handleChange}/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="description" className="create-restaurant-form-label">Text Area</Label>
-            <textarea className="create-restaurant-form-input" name="description" id="description" onChange={this.handleChange}/>
-          </FormGroup>
-          <FormGroup>
-            <Label for="logo" className="create-restaurant-form-label">Logo</Label>
-            <CustomInput type="file" id="logo" name="logo" onChange={this.handleFile} />
-          </FormGroup>
-          <button className="btn-block create-restaurant-form-btn" onClick={this.handleSubmit}>Submit</button>
+            <FormGroup>
+              <Label for="restaurantName" className="create-restaurant-form-label">Restaurant Name</Label>
+              <input type="text" className="create-restaurant-form-input" name="name" id="restaurantName" placeholder="Restaurant Name" onChange={this.handleChange}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="location" className="create-restaurant-form-label">Location</Label>
+              <input type="text" className="create-restaurant-form-input" name="location" id="location" placeholder="Location" onChange={this.handleChange}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="description" className="create-restaurant-form-label">Text Area</Label>
+              <textarea className="create-restaurant-form-input" name="description" id="description" onChange={this.handleChange}/>
+            </FormGroup>
+            <FormGroup>
+              <Label for="logo" className="create-restaurant-form-label">Logo</Label>
+              <CustomInput type="file" id="logo" name="logo" onChange={this.handleFile} />
+            </FormGroup>
+            <button className="btn-block create-restaurant-form-btn" onClick={this.handleSubmit}>Submit</button>
           </Form>
         </div>
         <Footer />
