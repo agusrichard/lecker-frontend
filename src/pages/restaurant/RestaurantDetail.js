@@ -6,6 +6,7 @@ import { Container } from 'reactstrap'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
 import RestaurantModal from '../../components/restaurant/RestaurantModal'
+import ItemCard from '../../components/item/ItemCard'
 import RestaurantImage from '../../assets/images/restaurant/restaurant-image.jpg'
 import '../../assets/styles/restaurant.css'
 
@@ -132,6 +133,16 @@ class RestaurantDetail extends React.Component {
         </Container>
         <h1 className="restaurant-detail-heading-text text-center">Our Menus</h1>
         <hr className="heading-hr mb-5" />
+        <div className="mt-5 mb-5">
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-5">
+              <ItemCard />
+            </div>
+            <div className="col-md-5">
+              <ItemCard />
+            </div>
+          </div>
+        </div>
         <Footer />
       </div>
     )
