@@ -15,11 +15,12 @@ class CreateRestaurant extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isLoggedIn: false,
-      name: '',
-      location: '',
+      restaurantId: '', 
+      name: '', 
+      price: '', 
       description: '', 
-      logo: ''
+      category: '',
+      itemImage: ''
     }
   }
 
@@ -30,7 +31,7 @@ class CreateRestaurant extends React.Component {
   }
 
   handleFile = (event) => {
-    this.setState({ logo: event.target.files[0] })
+    this.setState({ itemImage: event.target.files[0] })
   }
 
   handleSubmit = async (event) => {
@@ -39,15 +40,17 @@ class CreateRestaurant extends React.Component {
       let token = this.props.loginToken
       const config = { headers: { Authorization: `Bearer ${token}` } }
       let formData = new FormData()
-      formData.append('logo', this.state.logo)
+      formData.append('itemImage', this.state.itemImage)
       formData.append('name', this.state.name)
-      formData.append('location', this.state.location)
+      formData.append('price', parseInt(this.state.price))
+      formData.append('category', this.state.category)
       formData.append('description', this.state.description)
+      formData.append('restaurantId', this.state.restaurantId)
 
-      const response = await axios.post(process.env.REACT_APP_BASE_URL + '/restaurants', formData, config)
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + '/items', formData, config)
       console.log(response)
       if (response.status === 200) {
-          this.props.history.push('/restaurants')
+          this.props.history.push('/restaurants/' + this.state.restaurantId)
       }
     } catch(err) {
       console.log(err)
@@ -55,33 +58,41 @@ class CreateRestaurant extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.setState({ restaurantId: parseInt(this.props.match.params.restaurantId) })
+  }
+
   render() {
     return (
       <>
         <Helmet>
-          <title>Lecker - Create Restaurant</title>
+          <title>Lecker - New Menu</title>
         </Helmet>
         <CustomNavbar />
         <section className="restaurant-detail"></section>
         <div className="mt-5 mb-5 mx-auto form-container">
-          <h1 className="pretty-text text-center">Create Restaurant</h1>
+          <h1 className="pretty-text text-center">New Menu</h1>
           <hr className="heading-hr mb-5" />
           <Form>
           <FormGroup>
-            <Label for="restaurantName" className="create-restaurant-form-label">Restaurant Name</Label>
-            <input type="text" className="create-restaurant-form-input" name="name" id="restaurantName" placeholder="Restaurant Name" onChange={this.handleChange}/>
+            <Label for="name" className="create-restaurant-form-label">Menu Name</Label>
+            <input type="text" className="create-restaurant-form-input" name="name" id="name" placeholder="Name" onChange={this.handleChange}/>
           </FormGroup>
           <FormGroup>
-            <Label for="location" className="create-restaurant-form-label">Location</Label>
-            <input type="text" className="create-restaurant-form-input" name="location" id="location" placeholder="Location" onChange={this.handleChange}/>
+            <Label for="category" className="create-restaurant-form-label">Menu Category</Label>
+            <input type="text" className="create-restaurant-form-input" name="category" id="category" placeholder="Category" onChange={this.handleChange}/>
           </FormGroup>
           <FormGroup>
-            <Label for="description" className="create-restaurant-form-label">Text Area</Label>
+            <Label for="price" className="create-restaurant-form-label">Price</Label>
+            <input type="number" className="create-restaurant-form-input" name="price" id="price" placeholder="Price" onChange={this.handleChange}/>
+          </FormGroup>
+          <FormGroup>
+            <Label for="description" className="create-restaurant-form-label">Description</Label>
             <textarea className="create-restaurant-form-input" name="description" id="description" onChange={this.handleChange}/>
           </FormGroup>
           <FormGroup>
-            <Label for="logo" className="create-restaurant-form-label">Logo</Label>
-            <CustomInput type="file" id="logo" name="logo" onChange={this.handleFile} />
+            <Label for="itemImage" className="create-restaurant-form-label">Menu Image</Label>
+            <CustomInput type="file" id="itemImage" name="itemImage" onChange={this.handleFile} />
           </FormGroup>
           <button className="btn-block create-restaurant-form-btn" onClick={this.handleSubmit}>Submit</button>
           </Form>

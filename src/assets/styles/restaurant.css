@@ -15,6 +15,7 @@
 .main-text {
   color: #fff;
   width: 30%;
+  margin-left: 3rem;
   font-family: 'Lobster', cursive;
 }
 
@@ -75,7 +76,6 @@
 }
 
 .heading-hr {
-  /* background-color: #BC8EC8; */
   border-top: 5px dotted #BC8EC8;
   width: 50%;
 }
@@ -192,6 +192,24 @@
   margin: 0 1.5rem; 
 }
 
+.create-item-link {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  background-color: #BA0295;
+  padding: 0.75rem 1.3rem;
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+}
+
+.create-item-link:hover {
+  background-color: rgb(82, 6, 99);
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
 @media screen and (max-width: 768px) {
   .restaurant {
     margin-top: 3rem;
@@ -220,5 +238,12 @@
 
   .list-col {
     margin: 1.5rem 1.5rem;
+  }
+
+  .create-item-link {
+    position: static;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
   }
 }

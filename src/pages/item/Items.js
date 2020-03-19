@@ -24,7 +24,7 @@ class Items extends React.Component {
           </div>
         </section>
         <p className="text-center items-list-begin-text mt-5">TRY &amp; DISCOVER</p>
-        <h3 className="text-center items-list-main-text mb-2">Restaurants</h3>
+        <h3 className="text-center items-list-main-text mb-2">Our Menus</h3>
         <hr className="heading-hr mb-5" />
         <div className="mt-5 mb-5">
           <div className="row d-flex justify-content-center">

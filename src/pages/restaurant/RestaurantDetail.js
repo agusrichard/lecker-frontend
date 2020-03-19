@@ -3,6 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Container } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
 import RestaurantModal from '../../components/restaurant/RestaurantModal'
@@ -127,6 +128,7 @@ class RestaurantDetail extends React.Component {
                     restaurantDetail={this.state.restaurantDetail}
                     updateRestaurant={this.updateRestaurant}/>
                   <RestaurantModal deleteRestaurant={this.deleteRestaurant}/>
+                  <Link className="create-item-link" to={"/restaurants/" + this.props.match.params.restaurantId + "/new-menu"}>New Menu</Link>
                 </div> : null}
             </div>
           </div>

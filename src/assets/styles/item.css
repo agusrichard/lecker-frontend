@@ -70,4 +70,12 @@
   .img-card-img {
     width: 75%;
   }
+
+  .main-text {
+    color: #fff;
+    margin: auto;
+    text-align: center;
+    width: 50%;
+    font-family: 'Lobster', cursive;
+  }
 }
