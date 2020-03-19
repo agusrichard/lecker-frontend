@@ -9,7 +9,7 @@ import Footer from '../../components/Footer'
 import RestaurantCard from '../../components/restaurant/RestaurantCard'
 import '../../assets/styles/restaurant.css'
 
-export default class Restaurants extends Component {
+class Restaurants extends Component {
   render() {
     return (
       <div>
@@ -93,3 +93,5 @@ export default class Restaurants extends Component {
     )
   }
 }
+
+export default Restaurants

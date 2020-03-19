@@ -12,7 +12,7 @@ import UserProfile from './pages/user/UserProfile'
 import Restaurants from './pages/restaurant/Restaurants'
 import RestaurantDetail from './pages/restaurant/RestaurantDetail'
 import CreateRestaurant from './pages/restaurant/CreateRestaurant'
-import ItemsPage from './pages/ItemsPage'
+import Items from './pages/item/Items'
 import Cart from './pages/Cart'
 
 
@@ -29,7 +29,7 @@ class App extends React.Component {
           <Route path="/restaurants/create-restaurant" component={ CreateRestaurant } />
           <Route path="/restaurants/:restaurantId" component={ RestaurantDetail } />
           <Route path="/restaurants" component={ Restaurants } />
-          <Route path="/items" component={ ItemsPage }/>
+          <Route path="/items" component={ Items }/>
           <Route path="/cart" component={ Cart } />
         </Switch>
       </BrowserRouter>

@@ -15,7 +15,6 @@
 .main-text {
   color: #fff;
   width: 30%;
-  margin-left: 3.5rem;
   font-family: 'Lobster', cursive;
 }
 
@@ -76,7 +75,8 @@
 }
 
 .heading-hr {
-  background-color: #BC8EC8;
+  /* background-color: #BC8EC8; */
+  border-top: 5px dotted #BC8EC8;
   width: 50%;
 }
 
