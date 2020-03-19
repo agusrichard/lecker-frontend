@@ -135,10 +135,10 @@ class RestaurantDetail extends React.Component {
         <hr className="heading-hr mb-5" />
         <div className="mt-5 mb-5">
           <div className="row d-flex justify-content-center">
-            <div className="col-md-5">
+            <div className="col-md-5 list-col">
               <ItemCard />
             </div>
-            <div className="col-md-5">
+            <div className="col-md-5 list-col">
               <ItemCard />
             </div>
           </div>

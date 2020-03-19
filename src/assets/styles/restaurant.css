@@ -188,6 +188,10 @@
   color: #BC8EC8;
 }
 
+.list-col {
+  margin: 0 1.5rem; 
+}
+
 @media screen and (max-width: 768px) {
   .restaurant {
     margin-top: 3rem;
@@ -208,5 +212,13 @@
 
   .detail-text-box {
     margin-top: 3rem;
+  }
+
+  .restaurant-row {
+    margin-top: 0;
+  }
+
+  .list-col {
+    margin: 1.5rem 1.5rem;
   }
 }

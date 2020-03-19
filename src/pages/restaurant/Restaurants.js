@@ -48,42 +48,42 @@ export default class Restaurants extends Component {
           <h3 className="text-center restaurant-list-main-text mb-2">Restaurants</h3>
           <hr className="heading-hr mb-5" />
           <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 mr-5">
+            <div className="col-md-5 list-col">
               <RestaurantCard />
             </div>
-            <div className="col-md-5">
-              <RestaurantCard />
-            </div>
-          </div>
-          <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 mr-5">
-              <RestaurantCard />
-            </div>
-            <div className="col-md-5">
+            <div className="col-md-5 list-col">
               <RestaurantCard />
             </div>
           </div>
           <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 mr-5">
+            <div className="col-md-5 list-col">
               <RestaurantCard />
             </div>
-            <div className="col-md-5">
-              <RestaurantCard />
-            </div>
-          </div>
-          <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 mr-5">
-              <RestaurantCard />
-            </div>
-            <div className="col-md-5">
+            <div className="col-md-5 list-col">
               <RestaurantCard />
             </div>
           </div>
           <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 mr-5">
+            <div className="col-md-5 list-col">
               <RestaurantCard />
             </div>
-            <div className="col-md-5">
+            <div className="col-md-5 list-col">
+              <RestaurantCard />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-center restaurant-row">
+            <div className="col-md-5 list-col">
+              <RestaurantCard />
+            </div>
+            <div className="col-md-5 list-col">
+              <RestaurantCard />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-center restaurant-row">
+            <div className="col-md-5 list-col">
+              <RestaurantCard />
+            </div>
+            <div className="col-md-5 list-col">
               <RestaurantCard />
             </div>
           </div>
