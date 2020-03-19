@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Zoom from 'react-reveal/Zoom';
 import Slide from 'react-reveal/Slide'
 import { userLogout, getUserProfile } from '../../redux/actions/auth'
+import { getOwnedRestaurant } from '../../redux/actions/user'
 import CustomNavbar from '../../components/CustomNavBar'
 import CustomModal from '../../components/CustomModal'
 import Footer from '../../components/Footer'
@@ -93,6 +94,7 @@ class UserProfile extends React.Component {
     console.log('componentDidMount')
     let token = this.props.loginToken
     this.props.getUserProfile(token)
+    this.props.getOwnedRestaurant(token)
   }
 
   render() {
@@ -177,7 +179,7 @@ const mapStateToProps = state => ({
   loginToken: state.auth.loginToken
 })
 
-const mapDispatchToProps = { userLogout, getUserProfile }
+const mapDispatchToProps = { userLogout, getUserProfile, getOwnedRestaurant }
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)

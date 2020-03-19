@@ -6,7 +6,7 @@ import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
-import RestaurantModal from '../../components/restaurant/RestaurantModal'
+import ItemModal from '../../components/item/ItemModal'
 import ItemCard from '../../components/item/ItemCard'
 import ItemImage from '../../assets/images/item/item-image.jpg'
 import '../../assets/styles/restaurant.css'
@@ -15,7 +15,7 @@ class ItemDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOwner: false,
+      canChange: false,
       itemDetail: {},
       name: '', 
       price: '', 
@@ -36,13 +36,15 @@ class ItemDetail extends React.Component {
 
   getItemDetail = async () => {
     const itemId = this.props.match.params.itemId
+    const ownedRestaurantIds = this.props.ownedRestaurants.map(restaurant => restaurant.id)
     try {
       const response = await axios.get(process.env.REACT_APP_BASE_URL + `/items/${itemId}`)
       if (response.status === 200) {
         console.log(response)
-        this.setState({
-          itemDetail: response.data.data.item,
-        })
+        if (ownedRestaurantIds.includes(response.data.data.item.restaurant_id)) {
+          this.setState({ canChange: true })
+        }
+        this.setState({ itemDetail: response.data.data.item })
       }
     } catch(err) {
       console.log(err)
@@ -97,7 +99,7 @@ class ItemDetail extends React.Component {
 
   render() {
     console.log('render')
-    console.log(this.state.isOwner)
+    console.log('canChange', this.state.canChange)
     return (
       <div>
         <Helmet>
@@ -114,10 +116,19 @@ class ItemDetail extends React.Component {
               <h3 className="restaurant-detail-desc-head-text">{this.state.itemDetail.name}</h3>
               <p className="restaurant-detail-desc-text">{this.state.itemDetail.description}</p>
               <p className="item-detail-price">Rp. {this.state.itemDetail.price}</p>
+              { this.state.canChange ? 
+                <>
+                  <ItemModal 
+                    updateItem={this.updateItem} 
+                    handleChange={this.handleChange}
+                    itemDetail={this.state.itemDetail}
+                    handleFile={this.handleFile}/>
+                  <ItemModal deleteItem={this.deleteItem} />
+                </> : null}
             </div>
           </div>
         </Container>
-        <h1 className="restaurant-detail-heading-text text-center">Our Menus</h1>
+        <h1 className="restaurant-detail-heading-text text-center">Reviews and Ratings</h1>
         <hr className="heading-hr mb-5" />
         <div className="mt-5 mb-5">
           <div className="row d-flex justify-content-center">
@@ -137,7 +148,8 @@ class ItemDetail extends React.Component {
 
 const mapStateToProps = state => ({
   userData: state.auth.userData,
-  loginToken: state.auth.loginToken
+  loginToken: state.auth.loginToken,
+  ownedRestaurants: state.user.ownedRestaurants
 })
 
 export default connect(mapStateToProps)(ItemDetail)

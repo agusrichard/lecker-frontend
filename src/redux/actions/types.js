@@ -4,5 +4,6 @@ export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST'
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGOUT = 'USER_LOGOUT'
 
-// Get user profile
+// User Constant
 export const GET_USER_PROFILE = 'GET_USER_PROFILE'
+export const GET_OWNED_RESTAURANT = 'GET_OWNED_RESTAURANT'
