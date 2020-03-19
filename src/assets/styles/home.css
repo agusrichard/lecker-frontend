@@ -6,6 +6,7 @@
   background-image: url(../images/home-background.jpg);
   background-position: center bottom;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .home-card {
