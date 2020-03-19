@@ -1,5 +1,5 @@
 import React from 'react'
-import Slide from 'react-reveal/Slide';
+import Slide from 'react-reveal/Slide'
 import CustomNavbar from '../components/CustomNavBar'
 import Footer from '../components/Footer'
 

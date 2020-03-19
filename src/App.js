@@ -10,7 +10,7 @@ import Register from './pages/auth/Register'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import UserProfile from './pages/user/UserProfile'
 import ItemsPage from './pages/ItemsPage'
-import RestaurantsPage from './pages/RestaurantsPage'
+import Restaurants from './pages/restaurant/Restaurants'
 import CreateRestaurant from './pages/CreateRestaurant'
 import RestaurantDetail from './pages/RestaurantDetail'
 import UpdateRestaurant from './pages/UpdateRestaurant'
@@ -29,7 +29,7 @@ class App extends React.Component {
           <Route path="/users/profile" component={ UserProfile } />
           <Route path="/restaurants/:restaurantId/update" component={ UpdateRestaurant } />
           <Route path="/restaurants/:restaurantId" component={ RestaurantDetail } />
-          <Route path="/restaurants" component={ RestaurantsPage } />
+          <Route path="/restaurants" component={ Restaurants } />
           <Route path="/create-restaurant" component={ CreateRestaurant } />
           <Route path="/items" component={ ItemsPage }/>
           <Route path="/cart" component={ Cart } />
