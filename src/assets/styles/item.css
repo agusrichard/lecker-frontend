@@ -62,6 +62,15 @@
   margin: 0;
 }
 
+.item-detail-price {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: rgb(214, 204, 57);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
   .img-card-container {
     text-align: center;

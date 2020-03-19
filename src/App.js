@@ -13,6 +13,7 @@ import Restaurants from './pages/restaurant/Restaurants'
 import RestaurantDetail from './pages/restaurant/RestaurantDetail'
 import CreateRestaurant from './pages/restaurant/CreateRestaurant'
 import Items from './pages/item/Items'
+import ItemDetail from './pages/item/ItemDetail'
 import CreateItem from './pages/item/CreateItem'
 import Cart from './pages/Cart'
 
@@ -31,6 +32,7 @@ class App extends React.Component {
           <Route path="/restaurants/:restaurantId/new-menu" component={ CreateItem }/>
           <Route path="/restaurants/:restaurantId" component={ RestaurantDetail } />
           <Route path="/restaurants" component={ Restaurants } />
+          <Route path="/menus/:itemId" component={ ItemDetail }/>
           <Route path="/menus" component={ Items }/>
           <Route path="/cart" component={ Cart } />
         </Switch>
