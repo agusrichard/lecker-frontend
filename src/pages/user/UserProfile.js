@@ -10,6 +10,7 @@ import { getOwnedRestaurant } from '../../redux/actions/user'
 import CustomNavbar from '../../components/CustomNavBar'
 import CustomModal from '../../components/CustomModal'
 import Footer from '../../components/Footer'
+import StackingRestaurants from '../../components/restaurant/StackingRestaurants'
 import Image from '../../assets/images/profile-picture-placeholder.png'
 import '../../assets/styles/userprofile.css'
 
@@ -168,6 +169,11 @@ class UserProfile extends React.Component {
             </div>
           </Container>
         </section>
+        <div className="pt-5 pb-5" style={{ backgroundColor: "#fff" }}>
+          <h3 className="text-center restaurant-list-main-text mb-2">Your Restaurants</h3>
+          <hr className="heading-hr mb-5" />
+          <StackingRestaurants listOfRestaurants={this.props.ownedRestaurants} />
+        </div>
         <Footer />
       </div>
     )
@@ -176,7 +182,8 @@ class UserProfile extends React.Component {
 
 const mapStateToProps = state => ({
   profile: state.auth.userData,
-  loginToken: state.auth.loginToken
+  loginToken: state.auth.loginToken,
+  ownedRestaurants: state.user.ownedRestaurants
 })
 
 const mapDispatchToProps = { userLogout, getUserProfile, getOwnedRestaurant }

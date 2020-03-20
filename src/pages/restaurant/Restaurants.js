@@ -1,16 +1,25 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import Slide from 'react-reveal/Slide'
 import Zoom from 'react-reveal/Zoom'
+import { getAllRestaurants } from '../../redux/actions/restaurant'
+import StackingRestaurants from '../../components/restaurant/StackingRestaurants'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
 import RestaurantCard from '../../components/restaurant/RestaurantCard'
 import '../../assets/styles/restaurant.css'
 
 class Restaurants extends Component {
+
+  componentDidMount() {
+    this.props.getAllRestaurants()
+  }
+
   render() {
+    console.log(this.props.allRestaurants)
     return (
       <div>
         <Helmet>
@@ -43,55 +52,22 @@ class Restaurants extends Component {
             </Slide>
           </div>
         </div>
-        <Container className="mt-5 mb-5">
+        <div className="pt-5 pb-5">
           <p className="text-center restaurant-list-begin-text">TRY &amp; DISCOVER</p>
           <h3 className="text-center restaurant-list-main-text mb-2">Restaurants</h3>
           <hr className="heading-hr mb-5" />
-          <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-          </div>
-          <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-          </div>
-          <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-          </div>
-          <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-          </div>
-          <div className="row d-flex justify-content-center restaurant-row">
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-            <div className="col-md-5 list-col">
-              <RestaurantCard />
-            </div>
-          </div>
-        </Container>
+          <StackingRestaurants listOfRestaurants={this.props.allRestaurants} />
+        </div>
         <Footer />
       </div>
     )
   }
 }
 
-export default Restaurants
+const mapStateToProps = state => ({
+  allRestaurants: state.restaurant.allRestaurants
+})
+
+const mapDispatchToProps = { getAllRestaurants }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Restaurants)
