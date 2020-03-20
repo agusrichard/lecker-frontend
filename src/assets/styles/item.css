@@ -71,6 +71,32 @@
   font-weight: bold;
 }
 
+.item-category-btn-group {
+  margin: auto;
+}
+
+.item-category-btn {
+  display: inline-block;
+  margin: 0 0.5rem;
+  border: none;
+  color: #BC8EC8;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  font-size: 1.3rem;;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 3px solid rgba(186, 2, 149, 0.884);
+  transition: 0.3s;
+}
+
+.item-category-btn:hover {
+  border-bottom: 2px solid rgb(214, 204, 57);
+  color: rgba(186, 2, 149, 0.884);
+  transition: 0.3s;
+}
+
+
 @media screen and (max-width: 768px) {
   .img-card-container {
     text-align: center;

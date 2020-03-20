@@ -13,12 +13,23 @@ import '../../assets/styles/item.css'
 
 class Items extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      chosenCategory: 0
+    }
+  }
+
   componentDidMount() {
     this.props.getAllItems()
   }
 
+  changeCategory = (categoryId) => {
+    this.setState({ chosenCategory: categoryId })
+  }
+
   render() {
-    console.log(this.props.allItems)
+    console.log('render')
     return (
       <>
         <Helmet>
@@ -35,8 +46,20 @@ class Items extends React.Component {
         <p className="text-center items-list-begin-text mt-5">TRY &amp; DISCOVER</p>
         <h3 className="text-center items-list-main-text mb-2">Our Menus</h3>
         <hr className="heading-hr mb-5" />
+        <div className="d-flex justify-content-center">
+          <button className="item-category-btn" onClick={() => this.changeCategory(0)} >All</button>
+          <button className="item-category-btn" onClick={() => this.changeCategory(1)} >Foods</button>
+          <button className="item-category-btn" onClick={() => this.changeCategory(2)} >Drinks</button>
+        </div>
         <div className="mt-5 mb-5">
-          <StackingItems listOfItems={this.props.allItems} />
+          { this.state.chosenCategory === 0 ?
+          <Slide right>
+            <StackingItems listOfItems={this.props.allItems} />
+          </Slide> :
+          <Slide right>
+            <StackingItems listOfItems={this.props.allItems.filter(item => item.category_id === this.state.chosenCategory)} />
+          </Slide>
+          }
         </div>
         <Footer />
       </>
