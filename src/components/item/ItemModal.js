@@ -15,9 +15,9 @@ const ItemModal = (props) => {
   if (props.updateItem) {
     return (
       <span>
-        <Button color="warning" onClick={toggle} style={{ color: '#fff', marginRight: '1rem' }}>Update Restaurant</Button>
+        <Button color="warning" onClick={toggle} style={{ color: '#fff', marginRight: '1rem' }}>Update Menu</Button>
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle} close={closeBtn}>Update Restaurant</ModalHeader>
+          <ModalHeader toggle={toggle} close={closeBtn}>Update Menu</ModalHeader>
           <ModalBody>
           <Form>
             <FormGroup>

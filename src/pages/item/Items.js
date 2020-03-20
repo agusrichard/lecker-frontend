@@ -1,15 +1,24 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { connect } from 'react-redux'
 import Slide from 'react-reveal/Slide'
 import Zoom from 'react-reveal/Zoom'
+import { getAllItems }  from '../../redux/actions/item'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
 import ItemCard from '../../components/item/ItemCard'
+import StackingItems from '../../components/item/StackingItems'
 
 import '../../assets/styles/item.css'
 
 class Items extends React.Component {
+
+  componentDidMount() {
+    this.props.getAllItems()
+  }
+
   render() {
+    console.log(this.props.allItems)
     return (
       <>
         <Helmet>
@@ -27,14 +36,7 @@ class Items extends React.Component {
         <h3 className="text-center items-list-main-text mb-2">Our Menus</h3>
         <hr className="heading-hr mb-5" />
         <div className="mt-5 mb-5">
-          <div className="row d-flex justify-content-center">
-            <div className="col-md-5 list-col">
-              <ItemCard />
-            </div>
-            <div className="col-md-5 list-col">
-              <ItemCard />
-            </div>
-          </div>
+          <StackingItems listOfItems={this.props.allItems} />
         </div>
         <Footer />
       </>
@@ -42,4 +44,10 @@ class Items extends React.Component {
   }
 }
 
-export default Items
+const mapStateToProps = state => ({
+  allItems: state.item.allItems
+})
+
+const mapDispatchToProps = { getAllItems }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Items)

@@ -4,6 +4,7 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import { connect } from 'react-redux'
 import { userLogout } from '../redux/actions/auth'
 import Image from '../assets/images/profile-picture-placeholder.png'
+import '../assets/styles/navbar.css'
 
 
 const Dropdown = (props) => {
@@ -20,11 +21,11 @@ const Dropdown = (props) => {
   const toggle = () => setOpen(!dropdownOpen);
 
   return (
-    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle} >
+    <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle color="">
         <img src={ props.profilePicture ? process.env.REACT_APP_BASE_URL+ '/' + props.profilePicture : Image } width="40" height="40" className="d-inline-block align-center mr-4 rounded-circle"/>
       </DropdownToggle>
-      <DropdownMenu>
+      <DropdownMenu className="custom-dropdown">
         <DropdownItem>
             <Link to="/users/profile" style={{ textDecoration: 'none' }}>Profile</Link>
         </DropdownItem>

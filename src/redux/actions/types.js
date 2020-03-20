@@ -10,3 +10,6 @@ export const GET_OWNED_RESTAURANT = 'GET_OWNED_RESTAURANT'
 
 // Restaurant Constant
 export const GET_ALL_RESTAURANTS = 'GET_ALL_RESTAURANTS'
+
+// Item Constant
+export const GET_ALL_ITEMS = 'GET_ALL_ITEMS'

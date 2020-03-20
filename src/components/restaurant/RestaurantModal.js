@@ -21,20 +21,20 @@ const RestaurantModal = (props) => {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label for="name">Restaurant Name</Label>
-                <Input type="text" name="name" id="name" placeholder={props.restaurantDetail.name} onChange={props.handleChange}/>
+                <Label for="restaurantName" className="create-restaurant-form-label">Restaurant Name</Label>
+                <input type="text" className="create-restaurant-form-input" name="name" id="restaurantName" placeholder={props.restaurantDetail.name} onChange={props.handleChange}/>
               </FormGroup>
               <FormGroup>
-                <Label for="location">Location</Label>
-                <Input type="text" name="location" id="location" placeholder={props.restaurantDetail.location} onChange={props.handleChange}/>
+                <Label for="location" className="create-restaurant-form-label">Location</Label>
+                <input type="text" className="create-restaurant-form-input" name="location" id="location" placeholder={props.restaurantDetail.location} onChange={props.handleChange}/>
               </FormGroup>
               <FormGroup>
-                <Label for="description">Description</Label>
-                <Input type="textarea" name="description" id="description" placeholder={props.restaurantDetail.description} onChange={props.handleChange}/>
+                <Label for="description" className="create-restaurant-form-label">Text Area</Label>
+                <textarea className="create-restaurant-form-input" name="description" id="description" placeholder={props.restaurantDetail.description} onChange={props.handleChange}/>
               </FormGroup>
               <FormGroup>
-                <Label for="logo">Profile Picture</Label>
-                <CustomInput type="file" name="logo" id="logo" onChange={props.handleFile} />
+                <Label for="logo" className="create-restaurant-form-label">Logo</Label>
+                <CustomInput type="file" id="logo" name="logo" onChange={props.handleFile} />
               </FormGroup>
             </Form>
           </ModalBody>

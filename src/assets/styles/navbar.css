@@ -53,6 +53,10 @@
   text-decoration: none;
 }
 
+.custom-dropdown {
+  background-color: #A377C4;
+}
+
 @media screen and (max-width: 768px) {
   .nav-item-top {
     margin-top: 1.5rem;

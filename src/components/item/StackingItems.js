@@ -1,13 +1,13 @@
 import React from 'react'
 
-import RestaurantCard from './RestaurantCard'
+import ItemCard from './ItemCard'
 
-export default function StackingRestaurants(props) {
-  const listOfRestaurants = props.listOfRestaurants
+export default function StackingItems(props) {
+  const listOfItems = props.listOfItems
 
-  let rendered = listOfRestaurants.map(restaurant => (
-    <div key={restaurant.id} className="col-md-5 list-col">
-      <RestaurantCard restaurant={restaurant} />
+  let rendered = listOfItems.map(item => (
+    <div key={item.id} className="col-md-5 list-col">
+      <ItemCard item={item} />
     </div>
   ))
 

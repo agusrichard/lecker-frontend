@@ -7,7 +7,7 @@ export default function RestaurantCard(props) {
   console.log('restaurantCard')
   console.log(props.restaurant)
   return (
-    <Link style={{ textDecoration: 'none' }}>
+    <Link style={{ textDecoration: 'none' }} to={`/restaurants/${props.restaurant.id}`}>
       <div className="row restaurant-card py-3 px-2">
         <div className="col-md-4">
           <img src={ RestaurantImage } className="restaurant-card-img" />
