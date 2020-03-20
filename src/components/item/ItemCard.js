@@ -4,6 +4,7 @@ import ItemImage from '../../assets/images/home-background.jpg'
 import '../../assets/styles/item.css'
 
 export default function ItemCard(props) {
+  console.log(props.item)
   return (
 		<Link style={{ textDecoration: 'none' }} to={`/menus/${props.item.id}`}>
 			<div className="row item-card py-3 px-2">
