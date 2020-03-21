@@ -30,8 +30,7 @@ export default function authReducer(state=initialState, action) {
       isUserAuthenticated: !state.isUserAuthenticated
     }
 
-    case USER_LOGOUT: 
-      return {
+    case USER_LOGOUT: return {
       ...state,
       userData: {},
       loginToken: '',

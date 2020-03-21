@@ -13,3 +13,8 @@ export const GET_ALL_RESTAURANTS = 'GET_ALL_RESTAURANTS'
 
 // Item Constant
 export const GET_ALL_ITEMS = 'GET_ALL_ITEMS'
+
+
+// Cart Constant
+export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
+export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'

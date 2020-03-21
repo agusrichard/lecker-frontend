@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { GET_OWNED_RESTAURANT } from './types'
+import { GET_OWNED_RESTAURANT, ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART } from './types'
 
 export const getOwnedRestaurant = loginToken => dispatch => {
   console.log('getOwnedRestaurant')
@@ -16,3 +16,16 @@ export const getOwnedRestaurant = loginToken => dispatch => {
     .catch(err => console.log(err))
 }
 
+export const addItemToCart = (itemId, quantity) => dispatch => {
+  dispatch({
+    type: ADD_ITEM_TO_CART,
+    payload: { itemId, quantity }
+  })
+}
+
+export const removeItemFromCart = (itemId) => dispatch => {
+  dispatch({
+    type: REMOVE_ITEM_FROM_CART,
+    payload: itemId
+  })
+}

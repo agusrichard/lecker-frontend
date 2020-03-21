@@ -96,6 +96,24 @@
   transition: 0.3s;
 }
 
+.item-card-btn {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+
+.item-card-btn-success {
+  border: none;
+  background-color: rgb(214, 204, 57);
+}
+
+.item-link {
+  color: inherit;
+}
+
+.item-link:hover {
+  color: rgb(214, 204, 57);
+}
 
 @media screen and (max-width: 768px) {
   .img-card-container {
