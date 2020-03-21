@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import Slide from 'react-reveal/Slide'
 import Zoom from 'react-reveal/Zoom'
@@ -9,7 +8,6 @@ import { getAllRestaurants } from '../../redux/actions/restaurant'
 import StackingRestaurants from '../../components/restaurant/StackingRestaurants'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
-import RestaurantCard from '../../components/restaurant/RestaurantCard'
 import '../../assets/styles/restaurant.css'
 
 class Restaurants extends Component {

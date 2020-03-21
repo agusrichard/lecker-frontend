@@ -23,7 +23,7 @@ function ItemCard(props) {
               <p className="price-text ml-auto">Rp. {props.item.price}</p>
             </div>
             <p className="mt-3">{props.item.description}</p>
-            { props.isLoggedIn && <ItemQuantityModal itemId={props.item.id}/> }
+            { props.isLoggedIn && <ItemQuantityModal item={props.item}/> }
           </div>
         </div>
     </Slide>

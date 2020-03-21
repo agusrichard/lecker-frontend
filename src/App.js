@@ -15,7 +15,7 @@ import CreateRestaurant from './pages/restaurant/CreateRestaurant'
 import Items from './pages/item/Items'
 import ItemDetail from './pages/item/ItemDetail'
 import CreateItem from './pages/item/CreateItem'
-import Cart from './pages/Cart'
+import CartAndCheckout from './pages/cartAndCheckout/CartAndCheckout'
 
 
 class App extends React.Component {
@@ -34,7 +34,7 @@ class App extends React.Component {
           <Route path="/restaurants" component={ Restaurants } />
           <Route path="/menus/:itemId" component={ ItemDetail }/>
           <Route path="/menus" component={ Items }/>
-          <Route path="/cart" component={ Cart } />
+          <Route path="/cart-checkout" component={ CartAndCheckout } />
         </Switch>
       </BrowserRouter>
     );

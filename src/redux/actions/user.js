@@ -16,10 +16,10 @@ export const getOwnedRestaurant = loginToken => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const addItemToCart = (itemId, quantity) => dispatch => {
+export const addItemToCart = (itemId, name, quantity, price, total) => dispatch => {
   dispatch({
     type: ADD_ITEM_TO_CART,
-    payload: { itemId, quantity }
+    payload: { itemId, name, quantity, price, total }
   })
 }
 

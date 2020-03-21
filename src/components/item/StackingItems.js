@@ -20,10 +20,14 @@ export default function StackingItems(props) {
     newRendered.push(inside)
   }
 
-  return newRendered.map(pair => (
-    <div className="row d-flex justify-content-center restaurant-row">
-      {pair[0]}
-      {pair[1]}
-    </div>
-  ))
+  if (listOfItems.length === 0) {
+    return <p className="text-center">No Items</p>
+  } else {
+    return newRendered.map(pair => (
+      <div className="row d-flex justify-content-center restaurant-row">
+        {pair[0]}
+        {pair[1]}
+      </div>
+    ))
+  }
 }

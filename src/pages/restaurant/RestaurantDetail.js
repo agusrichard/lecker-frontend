@@ -141,6 +141,7 @@ class RestaurantDetail extends React.Component {
             </div>
             <div className="col-md-8 detail-text-box">
               <h3 className="restaurant-detail-desc-head-text">{this.state.restaurantDetail.name}</h3>
+              <p className="text-muted">{this.state.restaurantDetail.location}</p>
               <p className="restaurant-detail-desc-text">{this.state.restaurantDetail.description}</p>
               { this.state.isOwner ? 
                 <div>

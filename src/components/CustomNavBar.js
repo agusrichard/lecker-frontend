@@ -47,7 +47,7 @@ const CustomNavbar = (props) => {
             <NavItem className="nav-item-top">
               { props.isLoggedIn ? 
                 <>
-                  <Link to="/cart">
+                  <Link to="/cart-checkout">
                     <img src={ CartIcon } width="40" height="40" className="d-inline-block align-center mr-4" alt="" />
                   </Link>
                   <Dropdown context="info" logout={props.logout} profilePicture={profilePicture}/>

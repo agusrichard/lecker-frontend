@@ -10,7 +10,7 @@ const ItemQuantityModal = (props) => {
 
   const [modal, setModal] = useState(false);
   const [quantity, setQuantity] = useState(0)
-  const [isBought, setIsBought] = useState(false)
+  const [isBought, setIsBought] = useState(!props.itemsInCart.some(item => item.itemId === props.item.id))
   const toggle = () => setModal(!modal);
   const bought = () => setIsBought(!isBought)
   const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
@@ -19,12 +19,17 @@ const ItemQuantityModal = (props) => {
     setQuantity(event.target.value)
   }
 
-  const addToCart = () => props.addItemToCart(props.itemId, parseInt(quantity))
-  const removeItem = () => props.removeItemFromCart(props.itemId)
+  const addToCart = () => props.addItemToCart(
+    props.item.id,
+    props.item.name,
+    parseInt(quantity), 
+    props.item.price, 
+    props.item.price*parseInt(quantity))
+  const removeItem = () => props.removeItemFromCart(props.item.id)
 
   return (
     <span>
-        { !isBought ? 
+        {  isBought ? 
           <Button color="success" onClick={toggle} className="item-card-btn">Add+</Button> :
           <Button color="warning" onClick={() => { removeItem(); bought() }} className="item-card-btn">Cancel</Button>
         }
@@ -50,4 +55,6 @@ const ItemQuantityModal = (props) => {
   )
 }
 
-export default connect(null, { addItemToCart, removeItemFromCart })(ItemQuantityModal)
+const mapStateToProps = state => ({ itemsInCart: state.user.itemsInCart })
+
+export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(ItemQuantityModal)
