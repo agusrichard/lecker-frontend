@@ -3,7 +3,7 @@ import {
   Button, Modal, ModalHeader, 
   ModalBody, ModalFooter, Form, 
   FormGroup, Label, Input, CustomInput } from 'reactstrap';
-import '../assets/styles/userprofile.css'
+import '../../assets/styles/userprofile.css'
 
 
 const CustomModal = (props) => {
@@ -16,7 +16,8 @@ const CustomModal = (props) => {
     btnMessage,
     handleChange,
     handleFile,
-    topup
+    topup,
+    userProfile
   } = props;
 
   const [modal, setModal] = useState(false);
@@ -57,12 +58,16 @@ const CustomModal = (props) => {
           <ModalBody>
             <Form>
               <FormGroup>
-                <Label for="fullname">Fullname</Label>
-                <Input type="text" name="fullname" id="fullname" onChange={handleChange}/>
+                <Label for="fullname" className="create-restaurant-form-label">Fullname</Label>
+                <input type="text" className="create-restaurant-form-input" placeholder={userProfile.full_name} name="fullname" id="fullname" onChange={handleChange}/>
               </FormGroup>
               <FormGroup>
-                <Label for="email">Email</Label>
-                <Input type="email" name="email" id="email" onChange={handleChange}/>
+                <Label for="email" className="create-restaurant-form-label">Email</Label>
+                <input type="email" className="create-restaurant-form-input" placeholder={userProfile.email}name="email" id="email" onChange={handleChange}/>
+              </FormGroup>
+              <FormGroup>
+                <Label for="address" className="create-restaurant-form-label">Address</Label>
+                <textarea className="create-restaurant-form-input" placeholder={userProfile.address} name="address" id="address" onChange={handleChange}/>
               </FormGroup>
               <FormGroup>
                 <Label for="profilePicture">Profile Picture</Label>

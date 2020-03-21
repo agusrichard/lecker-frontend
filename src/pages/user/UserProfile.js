@@ -8,7 +8,7 @@ import Slide from 'react-reveal/Slide'
 import { userLogout, getUserProfile } from '../../redux/actions/auth'
 import { getOwnedRestaurant } from '../../redux/actions/user'
 import CustomNavbar from '../../components/CustomNavBar'
-import CustomModal from '../../components/CustomModal'
+import CustomModal from '../../components/user/CustomModal'
 import Footer from '../../components/Footer'
 import StackingRestaurants from '../../components/restaurant/StackingRestaurants'
 import Image from '../../assets/images/profile-picture-placeholder.png'
@@ -21,6 +21,7 @@ class UserProfile extends React.Component {
       topupAmount: '',
       email: '',
       fullName: '',
+      address: '',
       profilePicture: '',
     }
   }
@@ -78,6 +79,7 @@ class UserProfile extends React.Component {
       formData.append('profilePicture', this.state.profilePicture)
       formData.append('email', this.state.email || this.props.profile.email)
       formData.append('fullName', this.state.fullName || this.props.profile.full_name)
+      formData.append('address', this.state.address || this.props.profile.address)
 
       const response = await axios.patch(process.env.REACT_APP_BASE_URL + '/users/change-profile', formData, config)
       console.log(response)
@@ -123,6 +125,9 @@ class UserProfile extends React.Component {
               <Slide right>
                 <p className="card-text" style={{ color: '#ffc107', fontSize: '1.5rem' }}>Balance: Rp. {this.props.profile.balance}</p>
               </Slide>
+              <Slide right>
+                <p className="profile-text">{this.props.profile.address !== null ? this.props.profile.address : 'No Address'}</p>
+              </Slide>
             </div>
           </div>
         </Container>
@@ -148,7 +153,8 @@ class UserProfile extends React.Component {
                   <CustomModal 
                       buttonLabel="Change Profile"
                       message="Please Fill The Fields:"
-                      btnMessage="Change" 
+                      btnMessage="Change"
+                      userProfile={this.props.profile}
                       handleChange={this.handleChange} 
                       handleFile={this.handleFile}
                       updateUser={this.updateUser}/>
@@ -172,7 +178,9 @@ class UserProfile extends React.Component {
         <div className="pt-5 pb-5" style={{ backgroundColor: "#fff" }}>
           <h3 className="text-center restaurant-list-main-text mb-2">Your Restaurants</h3>
           <hr className="heading-hr mb-5" />
-          <StackingRestaurants listOfRestaurants={this.props.ownedRestaurants} />
+          { this.props.ownedRestaurants.length !== 0 ?
+            <StackingRestaurants listOfRestaurants={this.props.ownedRestaurants} /> :   
+            <p className="text-center">No restaurants</p>}
         </div>
         <Footer />
       </div>

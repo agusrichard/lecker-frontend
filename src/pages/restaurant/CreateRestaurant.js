@@ -47,7 +47,7 @@ class CreateRestaurant extends React.Component {
       const response = await axios.post(process.env.REACT_APP_BASE_URL + '/restaurants', formData, config)
       console.log(response)
       if (response.status === 200) {
-          this.props.history.push('/profile')
+          this.props.history.push('/users/profile')
       }
     } catch(err) {
       console.log(err)
@@ -76,7 +76,7 @@ class CreateRestaurant extends React.Component {
               <input type="text" className="create-restaurant-form-input" name="location" id="location" placeholder="Location" onChange={this.handleChange}/>
             </FormGroup>
             <FormGroup>
-              <Label for="description" className="create-restaurant-form-label">Text Area</Label>
+              <Label for="description" className="create-restaurant-form-label">Description</Label>
               <textarea className="create-restaurant-form-input" name="description" id="description" onChange={this.handleChange}/>
             </FormGroup>
             <FormGroup>

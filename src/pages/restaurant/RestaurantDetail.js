@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Container } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import Slide from 'react-reveal/Slide'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
 import RestaurantModal from '../../components/restaurant/RestaurantModal'
-import ItemCard from '../../components/item/ItemCard'
+import StackingItems from '../../components/item/StackingItems'
 import RestaurantImage from '../../assets/images/restaurant/restaurant-image.jpg'
 import '../../assets/styles/restaurant.css'
 
@@ -17,11 +18,17 @@ class RestaurantDetail extends React.Component {
     this.state = {
       isOwner: false,
       restaurantDetail: {},
+      listOfItems: [],
       name: '',
       location: '',
       description: '',
-      logo: ''
+      logo: '',
+      chosenCategory: 0
     }
+  }
+
+  changeCategory = (categoryId) => {
+    this.setState({ chosenCategory: categoryId })
   }
 
   handleChange = (event) => {
@@ -95,8 +102,23 @@ class RestaurantDetail extends React.Component {
     }
   }
 
+  getItemsByRestaurant = async () => {
+    const restaurantId = this.props.match.params.restaurantId
+    try {
+      const response = await axios.get(process.env.REACT_APP_BASE_URL + `/restaurants/${restaurantId}/items`)
+      console.log(response)
+      if (response.status === 200) {
+        this.setState({ listOfItems: response.data.data.results })
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to get items')
+    }
+  }
+
   componentDidMount() {
     this.getRestaurantDetail()
+    this.getItemsByRestaurant()
     if (parseInt(this.props.userData.id) === parseInt(this.state.restaurantDetail.owner_id)) {
       this.setState({ isOwner: true })
     }
@@ -133,17 +155,23 @@ class RestaurantDetail extends React.Component {
             </div>
           </div>
         </Container>
-        <h1 className="restaurant-detail-heading-text text-center">Our Menus</h1>
+        <p className="text-center items-list-begin-text mt-5">TRY &amp; DISCOVER</p>
+        <h3 className="text-center items-list-main-text mb-2">Our Menus</h3>
         <hr className="heading-hr mb-5" />
+        <div className="d-flex justify-content-center">
+          <button className="item-category-btn" onClick={() => this.changeCategory(0)} >All</button>
+          <button className="item-category-btn" onClick={() => this.changeCategory(1)} >Foods</button>
+          <button className="item-category-btn" onClick={() => this.changeCategory(2)} >Drinks</button>
+        </div>
         <div className="mt-5 mb-5">
-          <div className="row d-flex justify-content-center">
-            <div className="col-md-5 list-col">
-              <ItemCard />
-            </div>
-            <div className="col-md-5 list-col">
-              <ItemCard />
-            </div>
-          </div>
+          { this.state.chosenCategory === 0 ?
+          <Slide right>
+            <StackingItems listOfItems={this.state.listOfItems} />
+          </Slide> :
+          <Slide right>
+            <StackingItems listOfItems={this.state.listOfItems.filter(item => item.category_id === this.state.chosenCategory)} />
+          </Slide>
+          }
         </div>
         <Footer />
       </div>

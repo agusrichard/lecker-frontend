@@ -29,7 +29,7 @@ const RestaurantModal = (props) => {
                 <input type="text" className="create-restaurant-form-input" name="location" id="location" placeholder={props.restaurantDetail.location} onChange={props.handleChange}/>
               </FormGroup>
               <FormGroup>
-                <Label for="description" className="create-restaurant-form-label">Text Area</Label>
+                <Label for="description" className="create-restaurant-form-label">Description</Label>
                 <textarea className="create-restaurant-form-input" name="description" id="description" placeholder={props.restaurantDetail.description} onChange={props.handleChange}/>
               </FormGroup>
               <FormGroup>

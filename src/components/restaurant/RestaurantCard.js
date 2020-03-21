@@ -10,7 +10,7 @@ export default function RestaurantCard(props) {
     <Link style={{ textDecoration: 'none' }} to={`/restaurants/${props.restaurant.id}`}>
       <div className="row restaurant-card py-3 px-2">
         <div className="col-md-4">
-          <img src={ RestaurantImage } className="restaurant-card-img" />
+          <img src={ props.restaurant.logo ? process.env.REACT_APP_BASE_URL + '/' + props.restaurant.logo : RestaurantImage } className="restaurant-card-img" />
         </div>
         <div className="col-md-8 p-2">
           <h3>{props.restaurant.name}</h3>
