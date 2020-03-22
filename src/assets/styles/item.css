@@ -63,9 +63,6 @@
 }
 
 .item-detail-price {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   color: rgb(214, 204, 57);
   font-size: 2.5rem;
   font-weight: bold;
@@ -115,6 +112,65 @@
   color: rgb(214, 204, 57);
 }
 
+.item-img-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.review-card {
+  background-color: rgba(203, 180, 209, 0.3);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  color: rgb(82, 6, 99);
+  transition: 0.3s;
+}
+
+.review-card:hover {
+  color: #fff;
+  background: rgba(128, 53, 145, 0.5);
+  transition: 0.3s;
+}
+
+.item-review-text {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.rating-text {
+  color: rgb(214, 204, 57);
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: inline-block;
+  margin-left: 1.5rem;
+}
+
+.item-review-content {
+  color: rgba(186, 2, 149, 0.884);
+  font-size: 1rem;
+}
+
+.profile-fullname {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+.custom-close-btn {
+  display: block;
+  color: rgba(186, 2, 149, 0.884);
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.custom-close-btn:hover {
+  color: rgb(82, 6, 99);
+  transition: 0.3s;
+}
+
 @media screen and (max-width: 768px) {
   .img-card-container {
     text-align: center;
@@ -130,5 +186,13 @@
     text-align: center;
     width: 50%;
     font-family: 'Lobster', cursive;
+  }
+
+  .item-img-container {
+    margin-top: 2rem;
+  }
+
+  .review-card {
+    margin: 1rem 0.5rem;
   }
 }

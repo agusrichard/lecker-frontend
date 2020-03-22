@@ -3,11 +3,14 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Container } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { 
+  Form, 
+  FormGroup, Label,
+  CustomInput } from 'reactstrap';
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
 import ItemModal from '../../components/item/ItemModal'
-import ItemCard from '../../components/item/ItemCard'
+import StackingReviews from '../../components/item/StackingReviews'
 import ItemImage from '../../assets/images/item/item-image.jpg'
 import '../../assets/styles/restaurant.css'
 
@@ -20,7 +23,10 @@ class ItemDetail extends React.Component {
       name: '', 
       price: '', 
       description: '',
-      itemImage: ''
+      itemImage: '',
+      rating: '',
+      review: '',
+      listOfReviews: []
     }
   }
 
@@ -93,7 +99,56 @@ class ItemDetail extends React.Component {
     }
   }
 
+  getReviews = async () => {
+    console.log('getReviews')
+    const itemId = this.props.match.params.itemId
+    console.log(itemId)
+    try {
+      const response = await axios.get(process.env.REACT_APP_BASE_URL + `/reviews/items/${itemId}`)
+      console.log(response)
+      if (response.status === 200) {
+        this.setState({ listOfReviews: response.data.data })
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to get reviews')
+    }
+  }
+
+  deleteReview = async (reviewId) => {
+    try {
+      let token = this.props.loginToken
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const response = await axios.delete(process.env.REACT_APP_BASE_URL + `/reviews/${reviewId}`, config)
+      console.log(response)
+      if (response.status === 200) {
+        this.getReviews()
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to delete review')
+    }
+  }
+
+  handleReview = async () => {
+    const itemId = this.props.match.params.itemId
+    try {
+      let token = this.props.loginToken
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const data = { itemId, rating: this.state.rating, review: this.state.review }
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + `/reviews`, data, config)
+      console.log(response)
+      if (response.status === 200) {
+        this.getReviews()
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to create review')
+    }
+  }
+
   componentDidMount() {
+    this.getReviews()
     this.getItemDetail()
   }
 
@@ -109,28 +164,46 @@ class ItemDetail extends React.Component {
         <section className="restaurant-detail"></section>
         <Container className="mt-5 mb-5">
           <div className="row restaurant-detail-card">
-            <div className="col-md-4">
-              <img src={ this.state.itemDetail.images ? process.env.REACT_APP_BASE_URL+ '/' + this.state.itemDetail.images : ItemImage } className="restaurant-detail-img" alt="..." />
+          <div className="col-md-8 detail-text-box">
+            <h3 className="restaurant-detail-desc-head-text">{this.state.itemDetail.name}</h3>
+            <p className="restaurant-detail-desc-text">{this.state.itemDetail.description}</p>
+            <p className="item-detail-price">Rp. {this.state.itemDetail.price}</p>
+            { this.state.canChange ? 
+              <>
+                <ItemModal 
+                  updateItem={this.updateItem} 
+                  handleChange={this.handleChange}
+                  itemDetail={this.state.itemDetail}
+                  handleFile={this.handleFile}/>
+                <ItemModal deleteItem={this.deleteItem} />
+              </> : null}
             </div>
-            <div className="col-md-8 detail-text-box">
-              <h3 className="restaurant-detail-desc-head-text">{this.state.itemDetail.name}</h3>
-              <p className="restaurant-detail-desc-text">{this.state.itemDetail.description}</p>
-              <p className="item-detail-price">Rp. {this.state.itemDetail.price}</p>
-              { this.state.canChange ? 
-                <>
-                  <ItemModal 
-                    updateItem={this.updateItem} 
-                    handleChange={this.handleChange}
-                    itemDetail={this.state.itemDetail}
-                    handleFile={this.handleFile}/>
-                  <ItemModal deleteItem={this.deleteItem} />
-                </> : null}
+            <div className="col-md-3 item-img-container">
+              <img src={ this.state.itemDetail.images ? process.env.REACT_APP_BASE_URL+ '/' + this.state.itemDetail.images : ItemImage } className="restaurant-detail-img" alt="..." />
             </div>
           </div>
         </Container>
         <h1 className="restaurant-detail-heading-text text-center">Reviews and Ratings</h1>
         <hr className="heading-hr mb-5" />
         <div className="mt-5 mb-5">
+          <StackingReviews listOfReviews={this.state.listOfReviews} deleteReview={this.deleteReview} />
+          <Container style={{ width: '75vw' }}>
+            <div className="row d-flex justify-content-center ">
+              <div className="review-card mt-3">
+                <Form>
+                  <FormGroup>
+                    <Label for="rating" className="create-restaurant-form-label">Rating (0-10)</Label>
+                    <input type="number" className="create-restaurant-form-input" name="rating" id="rating" placeholder="Rating" onChange={this.handleChange}/>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="review" className="create-restaurant-form-label">Review</Label>
+                    <textarea className="create-restaurant-form-input" name="review" id="review" onChange={this.handleChange}/>
+                  </FormGroup>
+                  <button className="btn-block create-restaurant-form-btn" onClick={this.handleReview}>Submit</button>
+                </Form>
+              </div>
+            </div>
+          </Container>
         </div>
         <Footer />
       </div>
