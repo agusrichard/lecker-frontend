@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { Helmet } from 'react-helmet'
-import { Container, Form, FormGroup, Label } from 'reactstrap'
+import { Container, Form, FormGroup, Label, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import Slide from 'react-reveal/Slide'
+import Zoom from 'react-reveal/Zoom'
 import { removeItemFromCart } from '../../redux/actions/user'
+import { getUserProfile } from '../../redux/actions/auth'
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
 import CartModal from '../../components/cart/CartModal'
@@ -18,7 +21,8 @@ class CartAndCheckout extends Component {
       processStatus: 0,
       isOpen: false,
       fullname: this.props.userData.full_name,
-      address: this.props.userData.address
+      address: this.props.userData.address,
+
     }
   }
 
@@ -32,8 +36,27 @@ class CartAndCheckout extends Component {
     })
   }
 
-  handleCheckout = () => {
+  handleCheckout = async () => {
+    const listOfTotal = this.props.itemsInCart.map(item => item.total)
+    const expenses = listOfTotal.length !== 0 ? listOfTotal.reduce((prev, current) => prev + current) : 0
+    try {
+      const token = this.props.loginToken
+      const config = { headers: { Authorization: `Bearer ${token}` } }
+      const data = { expenses: expenses, listOfItems: this.props.itemsInCart }
+      const response = await axios.post(process.env.REACT_APP_BASE_URL + '/cart/checkout', data, config)
+      console.log(response)
+      if (response.status === 200) {
+        this.props.getUserProfile(token)
+        this.setState({ processStatus: 2 })
+      }
+    } catch(err) {
+      console.log(err)
+      alert('Failed to checkout')
+    }
+  }
 
+  componentWillUnmount() {
+    this.props.itemsInCart.forEach(item => this.props.removeItemFromCart(item.itemId))
   }
 
   render() {
@@ -74,9 +97,9 @@ class CartAndCheckout extends Component {
         <>
           <div style={{ overflowX: 'auto' }}>
             <div className="text-center mb-5">
-              <span className={ this.state.processStatus !== 0 ? "checkout-process-btn" : "checkout-process-btn-active"} onClick={() => this.handleChangeStatus(0)}>Cart</span>
-              <span className={ this.state.processStatus !== 1 ? "checkout-process-btn" : "checkout-process-btn-active"} onClick={() => this.handleChangeStatus(1)}>Checkout</span>
-              <span className={ this.state.processStatus !== 2 ? "checkout-process-btn" : "checkout-process-btn-active"} onClick={() => this.handleChangeStatus(2)}>Success</span>
+              <span className={ this.state.processStatus !== 0 ? "text-center checkout-process-btn" : "text-center checkout-process-btn-active"} onClick={() => this.handleChangeStatus(0)}>Cart</span>
+              <span className={ this.state.processStatus !== 1 ? "text-center checkout-process-btn" : "text-center checkout-process-btn-active"} onClick={() => this.handleChangeStatus(1)}>Checkout</span>
+              <span className={ this.state.processStatus !== 2 ? "text-center checkout-process-btn" : "text-center checkout-process-btn-active"} onClick={() => this.handleChangeStatus(2)}>Success</span>
             </div>
             { this.state.processStatus === 0 ?
             <Slide right>
@@ -117,19 +140,23 @@ class CartAndCheckout extends Component {
                 </Form>
                 </div>
               </Slide>
-              : <p>something</p>
+              :  this.state.processStatus === 2 ?
+              <Zoom>
+                <div className="text-center mt-5 mb-5 pt-5 pb-5">
+                  <h2 className="success-text-header">Congratulations... Your meals will arrive soon</h2>
+                  <p className="success-text-paragraph">Thank you for using our service</p>
+                </div>
+              </Zoom> : null
             }
             </div>
             <div className="btn-container text-center">
-            { this.state.processStatus === 0 ?
+            { this.props.userData.balance < expenses ? 
+              <Button color="warning" disabled style={{ cursor: 'default' }}>Please consider to topup first.</Button> :
+              this.state.processStatus === 0 ?
               <button className="ready-btn" onClick={() => this.handleChangeStatus(this.state.processStatus + 1)}>Ready To Checkout</button> : 
-              <>
-                <button className="ready-btn" onClick={() => {
-    
-                }}>Checkout</button>
-                <div className="custom-modal" style={ this.state.isOpen ? {display: 'block'} : null }>
-                </div>
-              </>
+              this.state.processStatus === 1 ?
+              <button className="ready-btn" onClick={this.handleCheckout}>Checkout</button> :
+              null
             }
             </div>
           </>
@@ -143,8 +170,9 @@ class CartAndCheckout extends Component {
 
 const mapStatetoProps = state => ({ 
   itemsInCart: state.user.itemsInCart,
-  userData: state.auth.userData
+  userData: state.auth.userData,
+  loginToken: state.auth.loginToken
 })
-const mapDispatchToProps = { removeItemFromCart }
+const mapDispatchToProps = { removeItemFromCart, getUserProfile }
 
 export default connect(mapStatetoProps, mapDispatchToProps)(CartAndCheckout)

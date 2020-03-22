@@ -99,6 +99,17 @@
   transform: translate(-50%, -50%);
 }
 
+.success-text-header {
+  font-size: 2.5rem;
+  color: #BA0295;
+}
+
+.success-text-paragraph {
+  font-size: 1.5rem;
+  color: #5D207C;
+  
+}
+
 @media screen and (max-width: 768px) {
   .checkout-process-btn {
     margin: 0.5rem 1rem;
