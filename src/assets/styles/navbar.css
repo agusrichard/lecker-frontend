@@ -29,13 +29,13 @@
 
 .link-text {
   font-size: 1.2rem;
-  color: #e40b69;
+  color: #8810b8;
   font-weight: bold;
   transition: 0.25s;
 }
 
 .link-text:hover {
-  color: #A377C4;
+  color: rgb(29, 189, 101);
   transition: 0.25s;
 }
 
@@ -65,5 +65,9 @@
 
   .nav {
     background-color: #BC8EC8;
+  }
+
+  .link-text {
+    color: #BA0295;
   }
 }

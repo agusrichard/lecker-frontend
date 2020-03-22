@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display&display=swap');
 
 .home {
   width: 100%;
   height: 100vh;
   background-image: url(../images/home-background.jpg);
-  background-position: center bottom;
+  background-position: top left;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.home1 {
+  width: 100%;
+  height: 60vh;
+  background-image: url(../images/home/home-background1.jpg);
+  background-position: bottom right;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -14,21 +24,25 @@
   padding: 2rem;
   margin: 0;
   transition: 0.5s;
-  font-size: 2rem
+  font-size: 2rem;
+  width: 50vw;
 }
 
-.home-card:nth-child(1) {
-  background-color: rgba(196, 125, 119, 0.5);
+.header-text {
+  font-family: 'Playfair Display', serif;
+  color: rgb(173, 87, 212);
+  font-size: 3rem;
 }
 
-.home-card:nth-child(2) {
-  background-color: rgba(119, 191, 196, 0.5);
+.header-text-paragraph {
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: rgb(89, 3, 116);
+  font-size: 1.5rem;
 }
 
-.home-card:hover {
-  padding: 3.5rem;
-  font-size: 2.5rem;
-  transition: 0.2s;
+.home-hr {
+  border-top: 5px solid #BC8EC8;
+  width: 50%;
 }
 
 .home-text {
@@ -38,4 +52,24 @@
 
 .no-outline:active {
   outline: none;
+}
+
+.home-box-img {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  border-radius: 5px;
+}
+
+.home-box-img:nth-child(1) {
+  top: 5rem;
+  right: 2rem;
+  z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .home-card {
+    margin-top: 3rem;
+    width: 100%;
+  }
 }

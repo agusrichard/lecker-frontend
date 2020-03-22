@@ -9,7 +9,6 @@ import {
   NavItem
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
-import { store } from '../redux/store'
 import BrandLogo from '../assets/images/logo.png'
 import CartIcon from '../assets/images/cart-icon.svg'
 import Dropdown from './Dropdown'

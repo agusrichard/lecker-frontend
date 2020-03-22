@@ -3,10 +3,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Container } from 'reactstrap'
-import { 
-  Form, 
-  FormGroup, Label,
-  CustomInput } from 'reactstrap';
+import { Form, FormGroup, Label } from 'reactstrap';
 import CustomNavbar from '../../components/CustomNavBar'
 import Footer from '../../components/Footer'
 import ItemModal from '../../components/item/ItemModal'
