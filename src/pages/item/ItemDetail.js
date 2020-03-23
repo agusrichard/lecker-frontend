@@ -183,7 +183,9 @@ class ItemDetail extends React.Component {
         <h1 className="restaurant-detail-heading-text text-center">Reviews and Ratings</h1>
         <hr className="heading-hr mb-5" />
         <div className="mt-5 mb-5">
-          <StackingReviews listOfReviews={this.state.listOfReviews} deleteReview={this.deleteReview} />
+          <Container>
+            <StackingReviews listOfReviews={this.state.listOfReviews} deleteReview={this.deleteReview} />
+          </Container>
           <Container style={{ width: '75vw' }}>
             <div className="row d-flex justify-content-center ">
               <div className="review-card mt-3">
