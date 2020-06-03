@@ -1,6 +1,13 @@
-<h1 align="left">Lecker</h1>
+<h1 align="center">Lecker Frontend</h1>
 
+<br/>
+
+## Description
 Lecker is a Food Delivery Web Application for food lovers. In here, people could see anykind of restaurants and foods they like. Then if they have found what they like, they can buy it, because this app has implement simple purchase mechanism.
+
+## Snapshots
+<img src="https://github.com/agusrichard/lecker-frontend/blob/master/snapshots/1.png" alt="First Snapshot" width="400" height="270"><img src="https://github.com/agusrichard/lecker-frontend/blob/master/snapshots/2.png" alt="Second Snapshot" width="400" height="270">  
+<img src="https://github.com/agusrichard/lecker-frontend/blob/master/snapshots/3.png" alt="Third Snapshot" width="400" height="270">  <img src="https://github.com/agusrichard/lecker-frontend/blob/master/snapshots/4.png" alt="Fourth Snapshot" width="400" height="270">
 
 
 ## Built With
