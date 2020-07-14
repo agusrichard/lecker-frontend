@@ -30,6 +30,7 @@ class Items extends React.Component {
 
   render() {
     console.log('render')
+    console.log('What is allItems', this.props.allItems)
     return (
       <>
         <Helmet>
@@ -54,10 +55,10 @@ class Items extends React.Component {
         <div className="mt-5 mb-5">
           { this.state.chosenCategory === 0 ?
           <Slide right>
-            <StackingItems listOfItems={this.props.allItems} />
+            <StackingItems listOfItems={this.props.allItems.results} />
           </Slide> :
           <Slide right>
-            <StackingItems listOfItems={this.props.allItems.filter(item => item.category_id === this.state.chosenCategory)} />
+            <StackingItems listOfItems={this.props.allItems.results.filter(item => item.category_id === this.state.chosenCategory)} />
           </Slide>
           }
         </div>

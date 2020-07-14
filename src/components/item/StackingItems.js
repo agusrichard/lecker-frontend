@@ -4,6 +4,7 @@ import ItemCard from './ItemCard'
 
 export default function StackingItems(props) {
   const listOfItems = props.listOfItems
+  console.log('What is listOfItems', listOfItems)
 
   let rendered = listOfItems.map(item => (
     <div key={item.id} className="col-md-5 list-col">
